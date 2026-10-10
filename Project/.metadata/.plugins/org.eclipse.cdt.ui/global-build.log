@@ -1,0 +1,1266 @@
+11:31:25 **** Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -lang-c++ -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.cpp
+qcc -lang-c++ -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+11:44:51 **** Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+11:52:46 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:03:50 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'SingleStep_TrafficLight_SM':
+src/trainCrossingNode.c:35:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:05:35 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'SingleStep_TrafficLight_SM':
+src/trainCrossingNode.c:35:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+src/trainCrossingNode.c:32:5: warning: enumeration value 'State3' not handled in switch [-Wswitch]
+     switch(CurrentState){
+     ^
+src/trainCrossingNode.c:32:5: warning: enumeration value 'State4' not handled in switch [-Wswitch]
+src/trainCrossingNode.c:32:5: warning: enumeration value 'State5' not handled in switch [-Wswitch]
+src/trainCrossingNode.c:32:5: warning: enumeration value 'State6' not handled in switch [-Wswitch]
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:06:27 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'SingleStep_TrafficLight_SM':
+src/trainCrossingNode.c:31:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:07:30 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:22:3: warning: implicit declaration of function 'SingleStep_TrafficLight_SM' [-Wimplicit-function-declaration]
+   SingleStep_TrafficLight_SM( &CurrentState ); // pass address
+   ^
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:31:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+build/x86_64-debug/src/trainCrossingNode.o: In function `main':
+C:\Users\rasit\Documents\UNI_local\Real-time-systems_LAB\Project\trainCrossingNode/src/trainCrossingNode.c:22: undefined reference to `SingleStep_TrafficLight_SM'
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/bin/x86_64-pc-nto-qnx7.0.0-ld caught signal 1
+make: *** [build/x86_64-debug/trainCrossingNode] Error 1
+Makefile:60: recipe for target 'build/x86_64-debug/trainCrossingNode' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+12:07:45 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:31:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:10:30 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:22:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:12:53 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+make: Nothing to be done for 'all'.
+12:14:26 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:28:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:14:56 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:28:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:17:58 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:28:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:18:31 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:16:14: warning: unused variable 'CurrentState' [-Wunused-variable]
+  enum states CurrentState; // Declaring the enum within the main
+              ^
+src/trainCrossingNode.c:15:19: warning: unused variable 'counter' [-Wunused-variable]
+  int Runtimes=30, counter = 0;
+                   ^
+src/trainCrossingNode.c:15:6: warning: unused variable 'Runtimes' [-Wunused-variable]
+  int Runtimes=30, counter = 0;
+      ^
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:28:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:18:40 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:15:19: warning: unused variable 'counter' [-Wunused-variable]
+  int Runtimes=30, counter = 0;
+                   ^
+src/trainCrossingNode.c:15:6: warning: unused variable 'Runtimes' [-Wunused-variable]
+  int Runtimes=30, counter = 0;
+      ^
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:28:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:19:23 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:17:17: error: 'state0' undeclared (first use in this function)
+  CurrentState = state0;
+                 ^
+src/trainCrossingNode.c:17:17: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:16:14: warning: variable 'CurrentState' set but not used [-Wunused-but-set-variable]
+  enum states CurrentState; // Declaring the enum within the main
+              ^
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:29:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+12:19:40 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:29:4: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+    sleep(1);
+    ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:19:52 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:35:7: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+       sleep(1);
+       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:20:09 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:35:7: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+       sleep(1);
+       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:35:54 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:16:14: warning: unused variable 'CurrentState' [-Wunused-variable]
+  enum states CurrentState = State0; // Declaring the enum within the main
+              ^
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:35:7: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+       sleep(1);
+       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:38:43 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railCrossing':
+src/trainCrossingNode.c:35:7: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+       sleep(1);
+       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:39:05 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:42:48 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:19:9: error: 'counter' undeclared (first use in this function)
+  while (counter < Runtimes) {
+         ^
+src/trainCrossingNode.c:19:9: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:19:19: error: 'Runtimes' undeclared (first use in this function)
+  while (counter < Runtimes) {
+                   ^
+src/trainCrossingNode.c:46:1: error: expected declaration or statement at end of input
+ }
+ ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+12:42:56 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:46:1: error: expected declaration or statement at end of input
+ }
+ ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+12:43:28 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:43:48 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:44:13 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:44:19 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:44:24 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:45:04 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:45:23 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:46:39 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:47:11 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:47:48 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:49:01 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c:22:1: error: expected identifier or '(' before '}' token
+ }
+ ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+12:49:09 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:01:08 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:02:55 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:31:17: error: 'State3' undeclared (first use in this function)
+      CurState = State3;
+                 ^
+src/trainCrossingNode.c:31:17: note: each undeclared identifier is reported only once for each function it appears in
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+13:03:59 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:04:42 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:04:59 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:06:18 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:5: warning: implicit declaration of function 'DoSomething0' [-Wimplicit-function-declaration]
+     DoSomething0();
+     ^
+src/trainCrossingNode.c: At top level:
+src/trainCrossingNode.c:48:6: warning: conflicting types for 'DoSomething0'
+ void DoSomething0(void) {
+      ^
+src/trainCrossingNode.c:26:5: note: previous implicit declaration of 'DoSomething0' was here
+     DoSomething0();
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:06:48 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:5: warning: implicit declaration of function 'DoSomething0' [-Wimplicit-function-declaration]
+     DoSomething0();
+     ^
+src/trainCrossingNode.c: At top level:
+src/trainCrossingNode.c:48:6: warning: conflicting types for 'DoSomething0'
+ void DoSomething0(void) {
+      ^
+src/trainCrossingNode.c:26:5: note: previous implicit declaration of 'DoSomething0' was here
+     DoSomething0();
+     ^
+src/trainCrossingNode.c: In function 'DoSomething0':
+src/trainCrossingNode.c:50:2: error: break statement not within loop or switch
+  break;
+  ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+13:07:14 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:07:47 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:08:29 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:10:22 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:11:20 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:15:55 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:38:06 **** Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+13:53:58 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+make: Nothing to be done for 'all'.
+13:55:18 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:5: error: 'done' undeclared (first use in this function)
+     done = true;
+     ^
+src/trainCrossingNode.c:26:5: note: each undeclared identifier is reported only once for each function it appears in
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+13:55:29 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:10: warning: unused variable 'done' [-Wunused-variable]
+     bool done = true;
+          ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:02:11 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:02:30 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:12:01 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:51:2: error: expected ';' before 'printf'
+  printf("Alarm off")
+  ^
+src/trainCrossingNode.c:53:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:12:08 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:51:2: error: expected ';' before 'printf'
+  printf("Alarm off");
+  ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:12:14 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:12:42 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:18:01 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:30:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:21:49 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:10: error: 'Done' undeclared (first use in this function)
+  while (!Done){
+          ^
+src/trainCrossingNode.c:26:10: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:30:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:56:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = true;
+       ^
+src/trainCrossingNode.c:55:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = false;
+       ^
+src/trainCrossingNode.c:54:7: warning: unused variable 'redLightFlashing' [-Wunused-variable]
+  bool redLightFlashing = false;
+       ^
+src/trainCrossingNode.c:53:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = false;
+       ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:21:59 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:30:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:56:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = true;
+       ^
+src/trainCrossingNode.c:55:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = false;
+       ^
+src/trainCrossingNode.c:54:7: warning: unused variable 'redLightFlashing' [-Wunused-variable]
+  bool redLightFlashing = false;
+       ^
+src/trainCrossingNode.c:53:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = false;
+       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:29:30 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:26:10: error: 'Done' undeclared (first use in this function)
+  while (!Done){
+          ^
+src/trainCrossingNode.c:26:10: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:30:8: error: expected '(' before 'gateslowered'
+     if gateslowered = false{
+        ^
+src/trainCrossingNode.c:30:8: error: 'gateslowered' undeclared (first use in this function)
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:59:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = true;
+       ^
+src/trainCrossingNode.c:58:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = false;
+       ^
+src/trainCrossingNode.c:57:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = false;
+       ^
+src/trainCrossingNode.c:56:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = false;
+       ^
+src/trainCrossingNode.c: In function 'crossingClosed':
+src/trainCrossingNode.c:68:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = false;
+       ^
+src/trainCrossingNode.c:67:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = true;
+       ^
+src/trainCrossingNode.c:66:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = true;
+       ^
+src/trainCrossingNode.c:65:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = true;
+       ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:29:43 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:30:9: error: expected '(' before 'gateslowered'
+      if gateslowered = false{
+         ^
+src/trainCrossingNode.c:30:9: error: 'gateslowered' undeclared (first use in this function)
+src/trainCrossingNode.c:30:9: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:59:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = true;
+       ^
+src/trainCrossingNode.c:58:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = false;
+       ^
+src/trainCrossingNode.c:57:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = false;
+       ^
+src/trainCrossingNode.c:56:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = false;
+       ^
+src/trainCrossingNode.c: In function 'crossingClosed':
+src/trainCrossingNode.c:68:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = false;
+       ^
+src/trainCrossingNode.c:67:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = true;
+       ^
+src/trainCrossingNode.c:66:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = true;
+       ^
+src/trainCrossingNode.c:65:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = true;
+       ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:31:59 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:31:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:38:34 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:30:11: error: 'gateLowered' undeclared (first use in this function)
+      if (!gateLowered){
+           ^
+src/trainCrossingNode.c:30:11: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:33:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:59:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = true;
+       ^
+src/trainCrossingNode.c:58:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = false;
+       ^
+src/trainCrossingNode.c:57:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = false;
+       ^
+src/trainCrossingNode.c:56:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = false;
+       ^
+src/trainCrossingNode.c: In function 'crossingClosed':
+src/trainCrossingNode.c:68:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = false;
+       ^
+src/trainCrossingNode.c:67:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = true;
+       ^
+src/trainCrossingNode.c:66:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = true;
+       ^
+src/trainCrossingNode.c:65:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = true;
+       ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:38:50 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:33:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:59:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = true;
+       ^
+src/trainCrossingNode.c:58:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = false;
+       ^
+src/trainCrossingNode.c:57:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = false;
+       ^
+src/trainCrossingNode.c:56:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = false;
+       ^
+src/trainCrossingNode.c: In function 'crossingClosed':
+src/trainCrossingNode.c:68:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = false;
+       ^
+src/trainCrossingNode.c:67:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = true;
+       ^
+src/trainCrossingNode.c:66:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = true;
+       ^
+src/trainCrossingNode.c:65:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = true;
+       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:39:25 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:33:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+src/trainCrossingNode.c: In function 'crossingOpen':
+src/trainCrossingNode.c:59:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = true;
+       ^
+src/trainCrossingNode.c:58:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = false;
+       ^
+src/trainCrossingNode.c:57:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = false;
+       ^
+src/trainCrossingNode.c:56:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = false;
+       ^
+src/trainCrossingNode.c: In function 'crossingClosed':
+src/trainCrossingNode.c:68:7: warning: unused variable 'trainSignalRed' [-Wunused-variable]
+  bool trainSignalRed = false;
+       ^
+src/trainCrossingNode.c:67:7: warning: unused variable 'crossingAlarm' [-Wunused-variable]
+  bool crossingAlarm = true;
+       ^
+src/trainCrossingNode.c:66:7: warning: unused variable 'redLight' [-Wunused-variable]
+  bool redLight = true;
+       ^
+src/trainCrossingNode.c:65:7: warning: unused variable 'gatesLowered' [-Wunused-variable]
+  bool gatesLowered = true;
+       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:40:58 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:33:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:41:40 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:33:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:44:40 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:31:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:47:26 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:32:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:48:16 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:35:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:48:29 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:35:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:50:47 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:32:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:51:49 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:32:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:53:32 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:25:10: error: 'Done' undeclared (first use in this function)
+  while (!Done){
+          ^
+src/trainCrossingNode.c:25:10: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:34:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:53:59 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:32:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:54:28 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:25:10: error: 'Done' undeclared (first use in this function)
+  while (!Done){
+          ^
+src/trainCrossingNode.c:25:10: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:34:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/trainCrossingNode.o' failed
+make: *** [build/x86_64-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:54:38 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:34:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:55:09 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+14:55:34 **** Incremental Build of configuration x86_64-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/trainCrossingNode.d,-MT,build/x86_64-debug/src/trainCrossingNode.o -o build/x86_64-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:34:5: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+     sleep(2);
+     ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/trainCrossingNode   build/x86_64-debug/src/trainCrossingNode.o  
+12:32:38 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+12:40:41 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+make: Nothing to be done for 'all'.
+12:43:26 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+make: Nothing to be done for 'all'.
+12:47:29 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+12:56:57 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:35:2: warning: implicit declaration of function 'pthread_create' [-Wimplicit-function-declaration]
+  pthread_create (&th1, NULL, railSensor, NULL);
+  ^
+src/trainCrossingNode.c:54:2: warning: implicit declaration of function 'pthread_join' [-Wimplicit-function-declaration]
+  pthread_join (th1, NULL);
+  ^
+src/trainCrossingNode.c: In function 'railSensor':
+src/trainCrossingNode.c:26:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+12:57:37 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:38:2: warning: implicit declaration of function 'pthread_create' [-Wimplicit-function-declaration]
+  pthread_create (&th1, NULL, railSensor, NULL);
+  ^
+src/trainCrossingNode.c:56:2: warning: implicit declaration of function 'pthread_join' [-Wimplicit-function-declaration]
+  pthread_join (th1, NULL);
+  ^
+src/trainCrossingNode.c: In function 'railSensor':
+src/trainCrossingNode.c:29:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+12:58:00 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:38:2: warning: implicit declaration of function 'pthread_create' [-Wimplicit-function-declaration]
+  pthread_create (&th1, NULL, railSensor, NULL);
+  ^
+src/trainCrossingNode.c:56:2: warning: implicit declaration of function 'pthread_join' [-Wimplicit-function-declaration]
+  pthread_join (th1, NULL);
+  ^
+src/trainCrossingNode.c: In function 'railSensor':
+src/trainCrossingNode.c:29:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+12:59:02 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'railSensor':
+src/trainCrossingNode.c:30:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+13:00:05 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+13:10:43 **** Build of configuration x86_64-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/codeTester.d,-MT,build/x86_64-debug/src/codeTester.o -o build/x86_64-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/codeTester   build/x86_64-debug/src/codeTester.o  
+13:11:23 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+13:12:05 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+13:12:43 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+src/codeTester.c: In function 'railSensor':
+src/codeTester.c:39:9: warning: implicit declaration of function 'pause_ms' [-Wimplicit-function-declaration]
+         pause_ms(10);   // Poll interval; choose for your sensor/system.
+         ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+build/aarch64le-debug/src/codeTester.o: In function `railSensor':
+C:\Users\rasit\Documents\UNI_local\Real-time-systems_LAB\Project\codeTester/src/codeTester.c:39: undefined reference to `pause_ms'
+build/aarch64le-debug/src/codeTester.o: In function `main':
+C:\Users\rasit\Documents\UNI_local\Real-time-systems_LAB\Project\codeTester/src/codeTester.c:74: undefined reference to `pause_ms'
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/bin/aarch64-unknown-nto-qnx7.0.0-ld caught signal 1
+make: *** [build/aarch64le-debug/codeTester] Error 1
+Makefile:60: recipe for target 'build/aarch64le-debug/codeTester' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+13:12:52 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+src/codeTester.c: In function 'main':
+src/codeTester.c:74:9: warning: implicit declaration of function 'pause_ms' [-Wimplicit-function-declaration]
+         pause_ms(500);
+         ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+build/aarch64le-debug/src/codeTester.o: In function `main':
+C:\Users\rasit\Documents\UNI_local\Real-time-systems_LAB\Project\codeTester/src/codeTester.c:74: undefined reference to `pause_ms'
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/bin/aarch64-unknown-nto-qnx7.0.0-ld caught signal 1
+Makefile:60: recipe for target 'build/aarch64le-debug/codeTester' failed
+make: *** [build/aarch64le-debug/codeTester] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+13:13:01 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+13:20:42 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+13:36:02 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+src/codeTester.c: In function 'main':
+src/codeTester.c:82:9: warning: implicit declaration of function 'pause_ms' [-Wimplicit-function-declaration]
+         pause_ms(50);
+         ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+build/aarch64le-debug/src/codeTester.o: In function `main':
+C:\Users\rasit\Documents\UNI_local\Real-time-systems_LAB\Project\codeTester/src/codeTester.c:82: undefined reference to `pause_ms'
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/bin/aarch64-unknown-nto-qnx7.0.0-ld caught signal 1
+Makefile:60: recipe for target 'build/aarch64le-debug/codeTester' failed
+make: *** [build/aarch64le-debug/codeTester] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+13:36:22 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+src/codeTester.c: In function 'main':
+src/codeTester.c:82:9: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+         sleep(50);
+         ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+13:36:52 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+src/codeTester.c: In function 'main':
+src/codeTester.c:82:9: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+         sleep(1);
+         ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+13:38:16 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+src/codeTester.c: In function 'main':
+src/codeTester.c:69:9: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+         sleep(1);
+         ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+13:38:53 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+src/codeTester.c: In function 'main':
+src/codeTester.c:69:9: warning: implicit declaration of function 'sleep' [-Wimplicit-function-declaration]
+         sleep(1);
+         ^
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+13:39:28 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+14:23:54 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+14:25:39 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+14:28:47 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+14:47:39 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+15:29:05 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:57:8: warning: unused variable 'done' [-Wunused-variable]
+   bool done;
+        ^
+src/trainCrossingNode.c:56:15: warning: unused variable 'state' [-Wunused-variable]
+   enum states state;
+               ^
+src/trainCrossingNode.c:61:2: error: 'state' undeclared (first use in this function)
+  state = CurState;
+  ^
+src/trainCrossingNode.c:61:2: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:62:2: error: 'done' undeclared (first use in this function)
+  done = Done;
+  ^
+src/trainCrossingNode.c:66:3: error: break statement not within loop or switch
+   break;
+   ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/trainCrossingNode.o' failed
+make: *** [build/aarch64le-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:29:19 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+src/codeTester.c: In function 'main':
+src/codeTester.c:47:14: warning: unused variable 'done' [-Wunused-variable]
+         bool done;
+              ^
+src/codeTester.c:46:21: warning: unused variable 'state' [-Wunused-variable]
+         enum states state;
+                     ^
+src/codeTester.c:51:9: error: 'state' undeclared (first use in this function)
+         state = CurState;
+         ^
+src/codeTester.c:51:9: note: each undeclared identifier is reported only once for each function it appears in
+src/codeTester.c:52:9: error: 'done' undeclared (first use in this function)
+         done = Done;
+         ^
+src/codeTester.c:56:13: error: break statement not within loop or switch
+             break;
+             ^
+In file included from C:/Users/rasit/qnx700/target/qnx7/usr/include/sys/platform.h:395:0,
+                 from C:/Users/rasit/qnx700/target/qnx7/usr/include/stdio.h:28,
+                 from src/codeTester.c:1:
+src/codeTester.c: At top level:
+src/codeTester.c:70:23: error: expected ')' before '(' token
+     pthread_join(th1, NULL);
+                       ^
+src/codeTester.c:71:5: error: expected identifier or '(' before 'return'
+     return 0;
+     ^
+src/codeTester.c:72:1: error: expected identifier or '(' before '}' token
+ }
+ ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/codeTester.o' failed
+make: *** [build/aarch64le-debug/src/codeTester.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:29:19 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:57:8: warning: unused variable 'done' [-Wunused-variable]
+   bool done;
+        ^
+src/trainCrossingNode.c:56:15: warning: unused variable 'state' [-Wunused-variable]
+   enum states state;
+               ^
+src/trainCrossingNode.c:61:2: error: 'state' undeclared (first use in this function)
+  state = CurState;
+  ^
+src/trainCrossingNode.c:61:2: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:62:2: error: 'done' undeclared (first use in this function)
+  done = Done;
+  ^
+src/trainCrossingNode.c:66:3: error: break statement not within loop or switch
+   break;
+   ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/aarch64le-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:30:36 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:57:8: warning: unused variable 'done' [-Wunused-variable]
+   bool done;
+        ^
+src/trainCrossingNode.c:56:15: warning: unused variable 'state' [-Wunused-variable]
+   enum states state;
+               ^
+src/trainCrossingNode.c:61:2: error: 'state' undeclared (first use in this function)
+  state = CurState;
+  ^
+src/trainCrossingNode.c:61:2: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:62:9: error: 'Done' undeclared (first use in this function)
+  done = Done;
+         ^
+src/trainCrossingNode.c:66:3: error: break statement not within loop or switch
+   break;
+   ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/trainCrossingNode.o' failed
+make: *** [build/aarch64le-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:33:07 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+15:33:08 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:57:8: warning: unused variable 'Done' [-Wunused-variable]
+   bool Done;
+        ^
+src/trainCrossingNode.c:56:15: warning: unused variable 'state' [-Wunused-variable]
+   enum states state;
+               ^
+src/trainCrossingNode.c:61:2: error: 'state' undeclared (first use in this function)
+  state = CurState;
+  ^
+src/trainCrossingNode.c:61:2: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:62:9: error: 'Done' undeclared (first use in this function)
+  done = Done;
+         ^
+src/trainCrossingNode.c:66:3: error: break statement not within loop or switch
+   break;
+   ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/aarch64le-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:33:47 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
+15:33:47 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:57:8: warning: unused variable 'Done' [-Wunused-variable]
+   bool Done;
+        ^
+src/trainCrossingNode.c:56:15: warning: unused variable 'state' [-Wunused-variable]
+   enum states state;
+               ^
+src/trainCrossingNode.c:61:2: error: 'state' undeclared (first use in this function)
+  state = CurState;
+  ^
+src/trainCrossingNode.c:61:2: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:62:9: error: 'Done' undeclared (first use in this function)
+  done = Done;
+         ^
+src/trainCrossingNode.c:66:3: error: break statement not within loop or switch
+   break;
+   ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/trainCrossingNode.o' failed
+make: *** [build/aarch64le-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:34:18 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:57:8: warning: unused variable 'Done' [-Wunused-variable]
+   bool Done;
+        ^
+src/trainCrossingNode.c:56:15: warning: unused variable 'state' [-Wunused-variable]
+   enum states state;
+               ^
+src/trainCrossingNode.c:61:2: error: 'state' undeclared (first use in this function)
+  state = CurState;
+  ^
+src/trainCrossingNode.c:61:2: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:62:2: error: 'done' undeclared (first use in this function)
+  done = Done;
+  ^
+src/trainCrossingNode.c:66:3: error: break statement not within loop or switch
+   break;
+   ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/aarch64le-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:34:33 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:57:8: warning: unused variable 'done' [-Wunused-variable]
+   bool done;
+        ^
+src/trainCrossingNode.c:56:15: warning: unused variable 'state' [-Wunused-variable]
+   enum states state;
+               ^
+src/trainCrossingNode.c:61:2: error: 'state' undeclared (first use in this function)
+  state = CurState;
+  ^
+src/trainCrossingNode.c:61:2: note: each undeclared identifier is reported only once for each function it appears in
+src/trainCrossingNode.c:62:2: error: 'done' undeclared (first use in this function)
+  done = Done;
+  ^
+src/trainCrossingNode.c:66:3: error: break statement not within loop or switch
+   break;
+   ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/trainCrossingNode.o' failed
+make: *** [build/aarch64le-debug/src/trainCrossingNode.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:35:22 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+src/trainCrossingNode.c: In function 'main':
+src/trainCrossingNode.c:94:1: error: expected declaration or statement at end of input
+ }
+ ^
+cc: C:/Users/rasit/qnx700/host/win64/x86_64/usr/lib/gcc/aarch64-unknown-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/aarch64le-debug/src/trainCrossingNode.o] Error 1
+Makefile:55: recipe for target 'build/aarch64le-debug/src/trainCrossingNode.o' failed
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:37:56 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+15:38:09 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+make: Nothing to be done for 'all'.
+15:43:19 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
+15:47:25 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
+make -j20 all 
+qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
+qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  

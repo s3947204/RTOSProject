@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <pthread.h>
+
+enum states {
+	State0,
+	State1,
+	State2
+};
+enum states CurState = State0;
+
+bool Done = false;
+bool gatesLowered;
+bool redLight;
+bool crossingAlarm;
+bool trainSignalRed;
+bool printed = false;
+
+pthread_mutex_t stateMutex = PTHREAD_MUTEX_INITIALIZER;
+
+void crossingOpen();
+void crossingClosed();
+
+void *railSensor (void *data){
+	//(void)data;
+	int key;
+
+	printf("Enter t to simulate train detection, n to clear sensor");
+	fflush(stdout);
+
+	while ((key = getchar()) != EOF){
+		pthread_mutex_lock(&stateMutex);
+
+		if (key == 't') {
+			CurState = State1;
+		} else if (key == 'n'){
+			CurState = State0;
+		}
+		pthread_mutex_unlock(&stateMutex);
+	}
+	return NULL;
+}
+
+int main(void){
+
+	pthread_t th1;
+
+	if (pthread_create (&th1, NULL, railSensor, NULL) != 0) {
+		perror("pthread_create");
+	}
+
+	while (!Done){
+		switch(CurState){
+			case State0: //Waiting for train
+				crossingOpen();
+					if (!gatesLowered && !printed){
+						printf("gates are raised\n");
+						fflush(stdout);
+				}
+				break;
+			case State1: //Train crossing
+				break;
+			case State2: //Crossing error
+
+				break;
+			}
+		}
+	pthread_join (th1, NULL);
+}
+
+void crossingOpen(void) {
+	gatesLowered = false;
+	redLight = false;
+	crossingAlarm = false;
+	trainSignalRed = true;
+}
+
+void crossingClosed(void) {
+	gatesLowered = true;
+	redLight = true;
+	crossingAlarm = true;
+	trainSignalRed = false;
+}

@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+enum states {
+	State0,
+	State1,
+	State2
+};
+enum states CurState;
+
+int test1();
+
+bool Done = false;
+bool gatesLowered;
+bool redLight;
+bool crossingAlarm;
+bool trainSignalRed;
+bool printed = false;
+
+void crossingOpen();
+void crossingClosed();
+
+int main(void){
+
+	pthread_t th1;
+
+	pthread_create (&th1, NULL, railSensor, NULL);
+
+	while (!Done){
+		switch(CurState){
+			case State0: //Waiting for train
+				crossingOpen();
+					if (!gatesLowered && !printed){
+						printf("gates are raised");
+						fflush(stdout);
+						printed = true;
+				}
+				break;
+			case State1: //Train crossing
+				break;
+			case State2: //Crossing error
+
+				break;
+			}
+		}
+	pthread_join (th1, NULL);
+}
+
+void crossingOpen(void) {
+	gatesLowered = false;
+	redLight = false;
+	crossingAlarm = false;
+	trainSignalRed = true;
+}
+
+void crossingClosed(void) {
+	gatesLowered = true;
+	redLight = true;
+	crossingAlarm = true;
+	trainSignalRed = false;
+}
+
+int test1(void) {
+
+    return 0;   // Replace with your test condition
+}

@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+enum states {
+	State0,
+	State1,
+	State2
+};
+enum states CurState;
+
+int test1();
+int test2();
+int Test3();
+bool Done = false;
+bool gatesLowered;
+bool redLight;
+bool crossingAlarm;
+bool trainSignalRed;
+
+void DoSomething0();
+void DoSomething1();
+void DoSomething2();
+
+int main(void){
+	while (!Done){
+		switch(CurState){
+			case State0:
+				crossingOpen();
+					if (!gatesLowered){
+						printf("gates are raised");
+				}
+				sleep(2);
+				break;
+			case State1:
+				break;
+			case State2:
+
+				break;
+			}
+		}
+}
+
+void crossingOpen(void) {
+	gatesLowered = false;
+	redLight = false;
+	crossingAlarm = false;
+	trainSignalRed = true;
+}
+
+void crossingClosed(void) {
+	gatesLowered = true;
+	redLight = true;
+	crossingAlarm = true;
+	trainSignalRed = false;
+}
+
+int test1(void) {
+
+    return 0;   // Replace with your test condition
+}
