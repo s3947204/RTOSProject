@@ -20,6 +20,8 @@ pthread_mutex_t stateMutex = PTHREAD_MUTEX_INITIALIZER;
 
 void crossingOpen();
 void crossingClosed();
+void CrossingState();
+void trainSignal();
 
 void *railSensor (void *data){
 	int key;
@@ -67,10 +69,14 @@ int main(void){
 	if (state != lastState){
 		if (state == State0){
 			crossingOpen();
+			trainSignal();
+			CrossingState();
 			printf("Waiting for train\n");
 		} else if (state == State1){
 			crossingClosed();
 			printf("Train detected\n");
+			CrossingState();
+			trainSignal();
 		}
 		fflush(stdout);
 		lastState = state;
@@ -93,4 +99,32 @@ void crossingClosed(void) {
 	redLight = true;
 	crossingAlarm = true;
 	trainSignalRed = false;
+}
+
+void CrossingState(void) {
+	if (gatesLowered) {
+		printf("The gates are down\n");
+	}else{
+		printf("The gates are up\n");
+	}
+
+	if (redLight) {
+		printf("Red lights are flashing\n");
+	}else{
+		printf("Red lights are off\n");
+	}
+
+	if (crossingAlarm){
+		printf("The alarm is on\n");
+	}else{
+		printf("The alarm is off\n");
+	}
+}
+
+void trainSignal(void){
+	if (trainSignalRed){
+		printf("The train signal is red\n");
+	}else{
+		printf("The train signal is green\n");
+	}
 }
