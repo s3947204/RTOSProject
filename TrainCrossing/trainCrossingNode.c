@@ -24,7 +24,7 @@ void crossingClosed();
 void *railSensor (void *data){
 	int key;
 
-	printf("Enter t to simulate train detection, n to clear sensor");
+	printf("Enter t to simulate train detection, n to clear sensor\n");
 	fflush(stdout);
 
 	while ((key = getchar()) != EOF){
