@@ -1,7 +1,0 @@
-15:33:47 **** Incremental Build of configuration aarch64le-debug for project codeTester ****
-make -j20 all 
-qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/codeTester.d,-MT,build/aarch64le-debug/src/codeTester.o -o build/aarch64le-debug/src/codeTester.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/codeTester.c
-qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/codeTester   build/aarch64le-debug/src/codeTester.o  
-
-15:33:47 Build Finished. 0 errors, 0 warnings. (took 481ms)
-

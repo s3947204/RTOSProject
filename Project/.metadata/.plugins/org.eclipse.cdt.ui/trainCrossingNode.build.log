@@ -1,7 +1,0 @@
-15:47:25 **** Incremental Build of configuration aarch64le-debug for project trainCrossingNode ****
-make -j20 all 
-qcc -Vgcc_ntoaarch64le -c -Wp,-MMD,build/aarch64le-debug/src/trainCrossingNode.d,-MT,build/aarch64le-debug/src/trainCrossingNode.o -o build/aarch64le-debug/src/trainCrossingNode.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/trainCrossingNode.c
-qcc -Vgcc_ntoaarch64le -o build/aarch64le-debug/trainCrossingNode   build/aarch64le-debug/src/trainCrossingNode.o  
-
-15:47:26 Build Finished. 0 errors, 0 warnings. (took 481ms)
-
