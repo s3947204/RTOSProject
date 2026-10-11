@@ -20,6 +20,11 @@ pthread_mutex_t stateMutex = PTHREAD_MUTEX_INITIALIZER;
 void crossingOpen();
 void crossingClosed();
 
+void *communication (void *data){
+
+	return NULL;
+}
+
 void *railSensor (void *data){
 	int key;
 
@@ -39,7 +44,7 @@ void *railSensor (void *data){
 	return NULL;
 }
 
-void crossingOutput (void *data){
+void *crossingOutput (void *data){
 	pthread_mutex_lock(&stateMutex);
 	if (gatesLowered) {
 		printf("The gates are down\n");
@@ -59,9 +64,10 @@ void crossingOutput (void *data){
 		printf("The alarm is off\n");
 	}
 	pthread_mutex_unlock(&stateMutex);
+	return NULL;
 }
 
-void trainSignal (void *data){
+void *trainSignal (void *data){
 	pthread_mutex_lock(&stateMutex);
 	if (trainSignalRed){
 			printf("The train signal is red\n");
@@ -69,16 +75,22 @@ void trainSignal (void *data){
 			printf("The train signal is green\n");
 	}
 	pthread_mutex_unlock(&stateMutex);
+	return NULL;
 }
 
 int main(void){
 
-	pthread_t th1, th2, th3;
+	pthread_t th1, th2, th3, th4;
 
 	if (pthread_create (&th1, NULL, railSensor, NULL) != 0) {
 		perror("pthread_create");
 		return 1;
 	}
+
+	if (pthread_create (&th4, NULL, communication, NULL) != 0) {
+			perror("pthread_create");
+			return 1;
+		}
 
 	enum states lastState = State2;
 
@@ -136,6 +148,7 @@ int main(void){
 	}
 
 	pthread_join (th1, NULL);
+	pthread_join (th4, NULL);
 	return 0;
 }
 
