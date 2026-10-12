@@ -9,7 +9,6 @@ enum states {
 };
 enum states CurState = State0;
 
-bool Done = false;
 bool gatesLowered;
 bool redLight;
 bool crossingAlarm;
@@ -20,12 +19,12 @@ pthread_mutex_t stateMutex = PTHREAD_MUTEX_INITIALIZER;
 void crossingOpen();
 void crossingClosed();
 
-void *communication (void *data){
+void *communication (void *data) {
 
 	return NULL;
 }
 
-void *railSensor (void *data){
+void *railSensor (void *data) {
 	int key;
 
 	printf("Enter t to simulate train detection, n to clear sensor\n");
@@ -36,7 +35,7 @@ void *railSensor (void *data){
 
 		if (key == 't') {
 			CurState = State1;
-		} else if (key == 'n'){
+		} else if (key == 'n') {
 			CurState = State0;
 		}
 		pthread_mutex_unlock(&stateMutex);
@@ -48,37 +47,37 @@ void *crossingOutput (void *data){
 	pthread_mutex_lock(&stateMutex);
 	if (gatesLowered) {
 		printf("The gates are down\n");
-	}else{
+	} else {
 		printf("The gates are up\n");
 	}
 
 	if (redLight) {
 		printf("Red lights are flashing\n");
-	}else{
+	} else {
 		printf("Red lights are off\n");
 	}
 
-	if (crossingAlarm){
+	if (crossingAlarm) {
 		printf("The alarm is on\n");
-	}else{
+	} else {
 		printf("The alarm is off\n");
 	}
 	pthread_mutex_unlock(&stateMutex);
 	return NULL;
 }
 
-void *trainSignal (void *data){
+void *trainSignal (void *data) {
 	pthread_mutex_lock(&stateMutex);
 	if (trainSignalRed){
 			printf("The train signal is red\n");
-	}else{
+	} else {
 			printf("The train signal is green\n");
 	}
 	pthread_mutex_unlock(&stateMutex);
 	return NULL;
 }
 
-int main(void){
+int main(void) {
 
 	pthread_t th1, th2, th3, th4;
 
@@ -92,23 +91,17 @@ int main(void){
 			return 1;
 		}
 
-	enum states lastState = State2;
+	enum states lastState;
 
 	while(1) {
 		enum states state;
-		bool done;
 
 	pthread_mutex_lock(&stateMutex);
 	state = CurState;
-	done = Done;
 	pthread_mutex_unlock(&stateMutex);
 
-	if (done) {
-		break;
-	}
-
-	if (state != lastState){
-		if (state == State0){
+	if (state != lastState) {
+		if (state == State0) {
 			crossingOpen();
 			if (pthread_create (&th3, NULL, trainSignal, NULL) != 0) {
 						perror("pthread_create");
