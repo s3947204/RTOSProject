@@ -25,7 +25,7 @@ typedef struct {
 } ServerParam;
 
 int serverInit(ServerParam *param);
-void serverRun(ServerParam *param);
+void *serverRun(void *arg);
 void serverCleanUp(ServerParam *param);
 
 #endif

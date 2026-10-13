@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
+#include "Server.h"
 
-void *server(void *arg);
+int main(void){
 
-int main(void)
-{
-    pthread_t server_thread;
+    ServerParam param;
+    pthread_t   serverThread;
 
-    pthread_create(&server_thread, NULL, server, NULL);
+    if(serverInit(&param) == -1){
+    	return EXIT_FAILURE;
+    }
+    pthread_create(&serverThread, NULL, serverRun, &param);
+    pthread_join(serverThread, NULL);
+    serverCleanUp(&param);
+    return EXIT_SUCCESS;
 
-    pthread_join(server_thread, NULL);
-
-    return 0;
 }
+

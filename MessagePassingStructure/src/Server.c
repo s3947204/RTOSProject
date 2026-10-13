@@ -1,37 +1,26 @@
-#include <stdio.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/dispatch.h>
+#include "Server.h"
 
-#define ATTACH_POINT "MainControllerServer"
-
-/* We specify the header as being at least a pulse */
-typedef struct _pulse msg_header_t;
-
-/* Our real data comes after the header */
-typedef struct _my_data {
-    msg_header_t hdr;
-    int          data;
-} my_data_t;
-
-/*** Server Side of the code ***/
-int server()
-{
+int serverInit(ServerParam *param){
 	printf("MainController: Creating the server\n");
-    name_attach_t *attach;
-    my_data_t      msg;
-    int            rcvid;
+	param->attach = name_attach(NULL, ATTACH_POINT, NAME_FLAG_ATTACH_GLOBAL);
 
-    /* Create a local name (/dev/name/local/...) */
-    if ((attach = name_attach(NULL, ATTACH_POINT, NAME_FLAG_ATTACH_GLOBAL)) == NULL) {
-    	printf("MainController: Creating a attach point failed \n");
-        return EXIT_FAILURE;
-    }
+	if ( param->attach == NULL) {
+		printf("MainController: Creating a attach point failed \n");
+		return -1;
+	}
+
+	printf("MainController: Attach point created successfully\n");
+	return 0;
+}
+
+void* serverRun(void *arg){
+	my_data_t msg;
+    ServerParam *param = (ServerParam *)arg;
+	int rcvid;
 
     /* Do your MsgReceive's here now with the chid */
     while (1) {
-        rcvid = MsgReceive(attach->chid, &msg, sizeof(msg), NULL);
+        rcvid = MsgReceive(param->attach->chid, &msg, sizeof(msg), NULL);
 
         if (rcvid == -1) {      /* Error condition, exit */
             break;
@@ -86,8 +75,12 @@ int server()
         printf("Server receive %d \n", msg.data);
         MsgReply(rcvid, EOK, 0, 0);
     }
-
-    /* Remove the name from the space */
-    name_detach(attach, 0);
-    return EXIT_SUCCESS;
+    return NULL;
 }
+
+
+void serverCleanUp(ServerParam *param){
+    name_detach(param->attach, 0);
+}
+
+
