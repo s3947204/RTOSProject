@@ -24,7 +24,7 @@ int server()
     int            rcvid;
 
     /* Create a local name (/dev/name/local/...) */
-    if ((attach = name_attach(NULL, ATTACH_POINT, 0)) == NULL) {
+    if ((attach = name_attach(NULL, ATTACH_POINT, NAME_FLAG_ATTACH_GLOBAL)) == NULL) {
     	printf("MainController: Creating a attach point failed \n");
         return EXIT_FAILURE;
     }
