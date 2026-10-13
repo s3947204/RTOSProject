@@ -149,8 +149,8 @@ int main(void) {
 			trainSignalRed = false;
 		}else if (state == State2){
 			printf("failure has occurred setting signal lights to red\n");
+			printf("Waiting for failure to be dismissed by master controller\n")
 			break;
-
 		}
 		if (pthread_create (&th3, NULL, crossingOutput, NULL) != 0) {
 							perror("pthread_create");
