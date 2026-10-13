@@ -26,7 +26,7 @@ int main(void)
 	TimerParam timerParam;
 
 	if(timerInit(&timerParam, 1) == -1){
-		printf("Failed do initialise timer\n");
+		printf("Failed to initialise timer\n");
 		return EXIT_FAILURE;
 	}
 
