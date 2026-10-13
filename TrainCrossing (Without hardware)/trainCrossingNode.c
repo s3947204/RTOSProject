@@ -13,11 +13,10 @@ bool gatesLowered;
 bool redLight;
 bool crossingAlarm;
 bool trainSignalRed;
+bool CrossingOpen;
 
 pthread_mutex_t stateMutex = PTHREAD_MUTEX_INITIALIZER;
 
-void crossingOpen();
-void crossingClosed();
 
 void *communication (void *data) {
 
@@ -37,6 +36,8 @@ void *railSensor (void *data) {
 			CurState = State1;
 		} else if (key == 'n') {
 			CurState = State0;
+		}else if (CurState == State2){
+			break;
 		}
 		pthread_mutex_unlock(&stateMutex);
 	}
@@ -45,33 +46,64 @@ void *railSensor (void *data) {
 
 void *crossingOutput (void *data){
 	pthread_mutex_lock(&stateMutex);
-	if (gatesLowered) {
-		printf("The gates are down\n");
-	} else {
-		printf("The gates are up\n");
-	}
+	if (CrossingOpen){
+		if (trainSignalRed){
+					printf("The train signal is red\n");
+			} else {
+					printf("fail\n");
+					CurState = State2;
+			}
 
-	if (redLight) {
-		printf("Red lights are flashing\n");
-	} else {
-		printf("Red lights are off\n");
-	}
+		if (!gatesLowered) {
+				printf("The gates are up\n");
+			} else {
+				printf("fail\n");
+				CurState = State2;
+			}
 
-	if (crossingAlarm) {
-		printf("The alarm is on\n");
-	} else {
-		printf("The alarm is off\n");
-	}
-	pthread_mutex_unlock(&stateMutex);
-	return NULL;
-}
+			if (!redLight) {
+				printf("Red lights are off\n");
+			} else {
+				printf("fail\n");
+				CurState = State2;
+			}
 
-void *trainSignal (void *data) {
-	pthread_mutex_lock(&stateMutex);
-	if (trainSignalRed){
-			printf("The train signal is red\n");
-	} else {
-			printf("The train signal is green\n");
+			if (!crossingAlarm) {
+				printf("The alarm is off\n");
+			} else {
+				printf("fail\n");
+				CurState = State2;
+			}
+			printf("Waiting for train\n");
+
+	}else if (!CrossingOpen){
+		if (gatesLowered) {
+			printf("Train detected\n");
+				printf("The gates are down\n");
+			} else {
+				printf("fail\n");
+				CurState = State2;
+			}
+
+			if (redLight) {
+				printf("Red lights are flashing\n");
+			} else {
+				printf("fail\n");
+				CurState = State2;
+			}
+
+			if (crossingAlarm) {
+				printf("The alarm is on\n");
+			} else {
+				printf("fail\n");
+				CurState = State2;
+			}
+			if (!trainSignalRed){
+				printf("The train signal is green\n");
+			} else {
+				printf("fail\n");
+				CurState = State2;
+			}
 	}
 	pthread_mutex_unlock(&stateMutex);
 	return NULL;
@@ -79,14 +111,14 @@ void *trainSignal (void *data) {
 
 int main(void) {
 
-	pthread_t th1, th2, th3, th4;
+	pthread_t th1, th2, th3;
 
 	if (pthread_create (&th1, NULL, railSensor, NULL) != 0) {
 		perror("pthread_create");
 		return 1;
 	}
 
-	if (pthread_create (&th4, NULL, communication, NULL) != 0) {
+	if (pthread_create (&th2, NULL, communication, NULL) != 0) {
 			perror("pthread_create");
 			return 1;
 		}
@@ -101,60 +133,34 @@ int main(void) {
 	pthread_mutex_unlock(&stateMutex);
 
 	if (state != lastState) {
+
 		if (state == State0) {
-			crossingOpen();
-			if (pthread_create (&th3, NULL, trainSignal, NULL) != 0) {
-						perror("pthread_create");
-						return 1;
-			}
+			CrossingOpen = true;
+			gatesLowered = false;
+			redLight = false;
+			crossingAlarm = false;
+			trainSignalRed = true;
 
-			pthread_join (th3, NULL);
-
-			if (pthread_create (&th2, NULL, crossingOutput, NULL) != 0) {
-						perror("pthread_create");
-						return 1;
-			}
-
-			pthread_join (th2, NULL);
-			printf("Waiting for train\n");
 		} else if (state == State1){
-			crossingClosed();
-			printf("Train detected\n");
+			CrossingOpen = false;
+			gatesLowered = true;
+			redLight = true;
+			crossingAlarm = true;
+			trainSignalRed = false;
+		}else if (state == State2){
+			printf("failure has occurred setting signal lights to red\n");
 
-			if (pthread_create (&th2, NULL, crossingOutput, NULL) != 0) {
-						perror("pthread_create");
-						return 1;
-			}
-
-			pthread_join (th2, NULL);
-
-			if (pthread_create (&th3, NULL, trainSignal, NULL) != 0) {
-						perror("pthread_create");
-						return 1;
-			}
-
-			pthread_join (th3, NULL);
 		}
-		fflush(stdout);
+		if (pthread_create (&th3, NULL, crossingOutput, NULL) != 0) {
+							perror("pthread_create");
+							return 1;
+				}
+		pthread_join (th3, NULL);
 		lastState = state;
 		}
 	}
 
+	pthread_join (th2, NULL);
 	pthread_join (th1, NULL);
-	pthread_join (th4, NULL);
 	return 0;
-}
-
-void crossingOpen(void) {
-	gatesLowered = false;
-	redLight = false;
-	crossingAlarm = false;
-	trainSignalRed = true;
-}
-
-void crossingClosed(void) {
-	gatesLowered = true;
-	redLight = true;
-	crossingAlarm = true;
-	trainSignalRed = false;
 }
