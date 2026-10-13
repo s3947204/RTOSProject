@@ -149,6 +149,7 @@ int main(void) {
 			trainSignalRed = false;
 		}else if (state == State2){
 			printf("failure has occurred setting signal lights to red\n");
+			break;
 
 		}
 		if (pthread_create (&th3, NULL, crossingOutput, NULL) != 0) {
