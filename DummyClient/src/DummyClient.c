@@ -30,7 +30,9 @@ int main(void)
 		// rcvid == 0 -> a pulse
 		if(rcvid == 0){
 			// can also check the pulse code here to make sure its from the timer
-			printf("Hello world!\n");
+		    if (msg.code == STATUS_TIMER) {
+				printf("Hello world!\n");
+		    }
 		}
 	}
 

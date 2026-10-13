@@ -6,9 +6,7 @@
 
 #define STATUS_TIMER _PULSE_CODE_MINAVAIL
 
-typedef union {
-    struct _pulse pulse;
-} my_message_t;
+typedef struct _pulse my_message_t;
 
 typedef struct {
 	int chid;
