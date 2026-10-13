@@ -17,5 +17,5 @@ typedef struct {
 
 
 int timerInit(TimerParam *param, int intervalSec);
-void timerCleanup(TimerParam *param);
+void timerCleanUp(TimerParam *param);
 #endif

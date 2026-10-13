@@ -1,6 +1,11 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 #include <sys/neutrino.h>
+#include <stdio.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/dispatch.h>
 
 #define ATTACH_POINT "MainControllerServer"
 
@@ -18,4 +23,5 @@ typedef struct {
 
 int clientInit(ClientParam *param);
 void clientCleanUp(ClientParam *param);
+
 #endif

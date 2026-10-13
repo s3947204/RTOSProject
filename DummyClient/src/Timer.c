@@ -31,7 +31,7 @@ int timerInit(TimerParam *param, int intervalSec){
 	{
 	   printf(stderr, "%s:  couldn't ConnectAttach to self!\n", progname);
 	   perror(NULL);
-	   exit(EXIT_FAILURE);
+	   return -1;
 	}
 
 	struct sched_param th_param;
@@ -50,7 +50,6 @@ int timerInit(TimerParam *param, int intervalSec){
 	{
 	   printf (stderr, "%s:  couldn't create a timer, errno %d\n", progname, errno);
 	   perror (NULL);
-	   timerCleanup(param);
 	   return -1;
 	}
 
@@ -60,7 +59,7 @@ int timerInit(TimerParam *param, int intervalSec){
 	return 0;
 }
 
-void timerCleanup(TimerParam *param){
+void timerCleanUp(TimerParam *param){
 	if(param->timerCreated){
 		timer_delete(param->timerId);
 		param->timerCreated = 0;
