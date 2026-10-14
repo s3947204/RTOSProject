@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "StepTimer.h"
 #include "TrafficLight.h"
+#include "Event.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,11 +11,16 @@ int main(int argc, char *argv[])
 	my_message_t msg;
 	TimerParam timerParam;
 	TrafficParam traffic;
-
+	EventParam eventParam;
 	srand(time(NULL));
 
+	if(eventInit(&eventParam) == -1){
+		printf("Failed ot intialise connection");
+		return EXIT_FAILURE;
+	}
+
 	// intialise the timer for a step of 1s
-	if(timerInit(&timerParam, 1) == -1){
+	if(timerInit(&timerParam, eventParam.coid, 1) == -1){
 		printf("Failed to initialise timer\n");
 		return EXIT_FAILURE;
 	}
@@ -24,7 +30,7 @@ int main(int argc, char *argv[])
 	trafficInit(&traffic, MODE_CYCLING);
 
 	while(1){
-		rcvid = MsgReceive(timerParam.chid, &msg, sizeof(msg), NULL);
+		rcvid = MsgReceive(eventParam.chid, &msg, sizeof(msg), NULL);
 		if(rcvid == -1){
 			printf("Error while receiving message\n");
 			break;

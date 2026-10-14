@@ -1,7 +1,9 @@
+#include "Event.h"
+char *progName = "Event.c";
+
 int eventInit(EventParam *param){
 	param->chid = -1;
 	param->coid = -1;
-	param->timerCreated = 0;
 
 	param->chid = ChannelCreate(0);
 	if(param->chid == -1){
@@ -23,6 +25,8 @@ int eventInit(EventParam *param){
 	   perror(NULL);
 	   return -1;
 	}
+
+	return 0;
 }
 
 
