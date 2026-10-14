@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <pthread.h>
+#include <stdlib.h>
+#include "Timer.h"
+#include <sys/neutrino.h>
+#include "Client.h"
 
 enum states {
 	State0, //Waiting for train
@@ -26,9 +30,54 @@ bool CrossingOpen;
 pthread_mutex_t stateMutex = PTHREAD_MUTEX_INITIALIZER;
 
 void *communication (void *data) { //communication thread
-	//heartbeat will go hear
-	//Send state to master controller
-	return NULL;
+	ClientParam clientParam;
+
+	my_data_t clientMsg;
+
+	if(clientInit(&clientParam) == -1){
+		printf("Failed to initialise client\n");
+		return EXIT_FAILURE;
+	}
+
+	clientMsg.hdr.type    = 0x00;
+	clientMsg.hdr.subtype = 0x00;
+
+	// Client started, can start sending messages
+	int rcvid;
+	my_message_t msg;
+	TimerParam timerParam;
+
+	if(timerInit(&timerParam, 1) == -1){
+		printf("Failed to initialise timer\n");
+		return EXIT_FAILURE;
+	}
+
+	//printf("Timer started. Waiting for pulses...\n");
+
+	int dataToSend = 0;
+	while(1){
+		rcvid = MsgReceive(timerParam.chid, &msg, sizeof(msg), NULL);
+		if(rcvid == -1){
+			printf("Error while receiving message\n");
+			break;
+		}
+		// rcvid == 0 -> a pulse
+		if(rcvid == 0){
+			// can also check the pulse code here to make sure its from the timer
+			if (msg.code == STATUS_TIMER) {
+			    clientMsg.data = dataToSend;
+			    clientMsg.state = (int)CurState;
+			    if (MsgSend(clientParam.serverCoid, &clientMsg, sizeof(clientMsg), NULL, 0) == -1) {
+			    	printf("Failed to send message\n");
+			    	return EXIT_FAILURE;
+			    }
+			    dataToSend += 1;
+			}
+		}
+	}
+
+	clientCleanUp(&clientParam);
+	timerCleanUp(&timerParam);
 }
 
 void *railSensor (void *data) { //rail sensor read thread
@@ -45,6 +94,7 @@ void *railSensor (void *data) { //rail sensor read thread
 		} else if (key == 'n') {
 			CurState = State0;
 		}else if (CurState == State2){
+			pthread_mutex_unlock(&stateMutex);
 			break;
 		}
 		pthread_mutex_unlock(&stateMutex);
@@ -111,44 +161,44 @@ int main(void) {
 
 	pthread_t th1, th2, th3;
 
+	if (pthread_create (&th2, NULL, communication, NULL) != 0) {
+				perror("pthread_create");
+				return 1;
+			}
+
 	if (pthread_create (&th1, NULL, railSensor, NULL) != 0) {
 			perror("pthread_create");
 			return 1;
 	}
-
-	if (pthread_create (&th2, NULL, communication, NULL) != 0) {
-			perror("pthread_create");
-			return 1;
-		}
 
 	enum states lastState;
 
 	while(1) {
 		enum states state;
 
-	pthread_mutex_lock(&stateMutex);
-	state = CurState;
-	pthread_mutex_unlock(&stateMutex);
+		pthread_mutex_lock(&stateMutex);
+		state = CurState;
+		pthread_mutex_unlock(&stateMutex);
 
-	if (state != lastState) {
+		if (state != lastState) {
 
-		if (state == State0) {
-			CrossingOpen = true;
-			gatesLowered = false;
-			//gatesLowered = true; //Simulate a component fail
-			redLight = false;
-			crossingAlarm = false;
-			trainSignalRed = true;
+			if (state == State0) {
+				CrossingOpen = true;
+				gatesLowered = false;
+				//gatesLowered = true; //Simulate a component fail
+				redLight = false;
+				crossingAlarm = false;
+				trainSignalRed = true;
 
-		} else if (state == State1){
-			CrossingOpen = false;
-			gatesLowered = true;
-			redLight = true;
-			crossingAlarm = true;
-			trainSignalRed = false;
-		}else if (state == State2){
-			break;
-		}
+			} else if (state == State1){
+				CrossingOpen = false;
+				gatesLowered = true;
+				redLight = true;
+				crossingAlarm = true;
+				trainSignalRed = false;
+			}else if (state == State2){
+				break;
+			}
 		if (pthread_create (&th3, NULL, crossingOutput, NULL) != 0) {
 				perror("pthread_create");
 				return 1;
