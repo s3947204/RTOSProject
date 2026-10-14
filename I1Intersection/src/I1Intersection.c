@@ -5,9 +5,9 @@
 #include <sys/netmgr.h>
 #include <sys/neutrino.h>
 #include <errno.h>
-#include <mqueue.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include "StepTimer.h"
 
 void* EWpedestrian(void* data);
 void* NSpedestrian(void* data);
@@ -19,17 +19,15 @@ void* Input(void* data);
 
 #define  MESSAGESIZE 2
 
-#define Q_FLAGS O_RDWR | O_CREAT | O_EXCL
-#define Q_Mode S_IRUSR | S_IWUSR
 
 #define MY_PULSE_CODE   _PULSE_CODE_MINAVAIL
 char *progname = "RTSproject_I1.c";
 
-typedef union
-{
-	struct _pulse   pulse;
-    // your other message structures would go here too
-} my_message_t;
+//typedef union
+//{
+//	struct _pulse   pulse;
+//    // your other message structures would go here too
+//} my_message_t;
 
 enum trafficStates { Green, Yellow, Red};
 enum pedestrianStates { pedGreen, pedFlash, pedRed};
@@ -365,68 +363,32 @@ int main(int argc, char *argv[])
 {
 
 	printf("main thread started....\n");
-	app_data data= {Green, pedRed, Init};
+	int rcvid;
+	my_message_t msg;
+	TimerParam timerParam;
 
-	struct sigevent event;
-
-	data.chid = ChannelCreate(0); // Create a communications channel
-
-	event.sigev_notify = SIGEV_PULSE;
-
-	// create a connection back to ourselves for the timer to send the pulse on
-	event.sigev_coid = ConnectAttach(ND_LOCAL_NODE, 0, data.chid, _NTO_SIDE_CHANNEL, 0);
-
-	struct sched_param th_param;
-	pthread_getschedparam(pthread_self(), NULL, &th_param);
-	event.sigev_priority = th_param.sched_curpriority;    // old QNX660 version getprio(0);
-	event.sigev_code = MY_PULSE_CODE;
-
-
-	timer_create(CLOCK_REALTIME, &event, &data.timer_id);
-	// setup the timer (1.5s initial delay value, 1.5s reload interval)
-	data.itime.it_value.tv_sec = 1;			  // 1 second
-	data.itime.it_value.tv_nsec = 0;    // 500 million nsecs = .5 secs
-	data.itime.it_interval.tv_sec = 0;          // 1 second
-	data.itime.it_interval.tv_nsec = 0; // 500 million nsecs = .5 secs
-
-	pthread_barrier_init (&data.initBarrier, NULL, 2);
-	pthread_t  th1, th2, th3, th4;
-	void *retval;
-
-	pthread_rwlock_init(&data.sensorRWL, NULL);
-
-    pthread_create(&th1,  NULL, Input, &data);
-    pthread_create(&th2,  NULL, Output, &data);
-
-	while(1){
-		switch (data.trafficPhase)
-		{
-			case Init:
-				//Init(data);
-				data.trafficPhase = EW;
-				break;
-			case EW:
-				pthread_create(&th3,  NULL, EWtraffic, &data);
-				pthread_join(th3, NULL);
-				data.trafficPhase = NS;
-				break;
-			case NS:
-				pthread_create(&th4,  NULL, NStraffic, &data);
-				pthread_join(th4, NULL);
-				data.trafficPhase = EW;
-				break;
-		}
-
+	// intialise the timer for a step of 1s
+	if(timerInit(&timerParam, 1) == -1){
+		printf("Failed to initialise timer\n");
+		return EXIT_FAILURE;
 	}
 
+	printf("Timer started. Waiting for pulses...\n");
 
-    pthread_join(th1, &retval);
-    pthread_join(th2, &retval);
-
-
-	pthread_rwlock_destroy(&data.sensorRWL);
+	while(1){
+		rcvid = MsgReceive(timerParam.chid, &msg, sizeof(msg), NULL);
+		if(rcvid == -1){
+			printf("Error while receiving message\n");
+			break;
+		}
+		// rcvid == 0 -> a pulse
+		if(rcvid == 0){
+			if (msg.code == STEP_TIMER) {
+				printf("Hello world\n");
+			}
+		}
+	}
 
 	printf("\nMain Terminating....");
-
 	return EXIT_SUCCESS;
 }
