@@ -184,8 +184,8 @@ int main(void) {
 
 			if (state == State0) {
 				CrossingOpen = true;
-				//gatesLowered = false;
-				gatesLowered = true; //Simulate a component fail
+				gatesLowered = false;
+				//gatesLowered = true; //Simulate a component fail
 				redLight = false;
 				crossingAlarm = false;
 				trainSignalRed = true;
