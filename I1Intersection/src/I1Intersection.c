@@ -358,6 +358,21 @@ void *NSpedestrian(void* data) {
 	}
 }
 
+#define NUM_PHASES 6
+typedef struct {
+	const char *lights;
+	int duration;  		// in seconds
+} phase;
+
+phase cycle[NUM_PHASES] = {
+	{ "NSG-EWR", 10},
+	{ "NSY-EWR", 3},
+	{ "NSR-EWR", 1},
+	{ "NSR-EWG", 10},
+	{ "NSR-EWY", 3},
+	{ "NSR-EWR", 1}
+};
+
 
 int main(int argc, char *argv[])
 {
@@ -367,6 +382,9 @@ int main(int argc, char *argv[])
 	my_message_t msg;
 	TimerParam timerParam;
 
+	int phase = 0; 		// current phase
+	int elapsed = 0;    // amount of time elapsed in current phase
+
 	// intialise the timer for a step of 1s
 	if(timerInit(&timerParam, 1) == -1){
 		printf("Failed to initialise timer\n");
@@ -374,6 +392,7 @@ int main(int argc, char *argv[])
 	}
 
 	printf("Timer started. Waiting for pulses...\n");
+	printf("%s\n", cycle[phase].lights);
 
 	while(1){
 		rcvid = MsgReceive(timerParam.chid, &msg, sizeof(msg), NULL);
@@ -384,7 +403,13 @@ int main(int argc, char *argv[])
 		// rcvid == 0 -> a pulse
 		if(rcvid == 0){
 			if (msg.code == STEP_TIMER) {
-				printf("Hello world\n");
+				// 1 second has elapsed
+				elapsed++;
+				if (elapsed >= cycle[phase].duration){
+					elapsed = 0;
+					phase = (phase + 1) % NUM_PHASES;
+					printf("%s\n", cycle[phase].lights);
+				}
 			}
 		}
 	}
