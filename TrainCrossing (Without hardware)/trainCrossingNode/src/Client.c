@@ -28,8 +28,8 @@ int client()
     /* We would have pre-defined data to stuff here */
 
     /* Do whatever work you wanted with server connection */
-    for (msg.data = 0; msg.data < 5; msg.data++) {
-        printf("Client sending %d \n", msg.data);
+    for (msg.crossingHeartbeat = 0; msg.crossingHeartbeat < 5; msg.crossingHeartbeat++) {
+        printf("Client sending %d \n", msg.crossingHeartbeat);
 
         if (MsgSend(server_coid, &msg, sizeof(msg), NULL, 0) == -1) {
             break;

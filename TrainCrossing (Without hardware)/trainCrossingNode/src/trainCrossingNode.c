@@ -65,8 +65,8 @@ void *communication (void *data) { //communication thread
 		if(rcvid == 0){
 			// can also check the pulse code here to make sure its from the timer
 			if (msg.code == STATUS_TIMER) {
-			    clientMsg.data = dataToSend;
-			    clientMsg.state = (int)CurState;
+			    clientMsg.crossingHeartbeat = dataToSend; //heartbeat message
+			    clientMsg.crossingState = (int)CurState; //state message
 			    if (MsgSend(clientParam.serverCoid, &clientMsg, sizeof(clientMsg), NULL, 0) == -1) {
 			    	printf("Failed to send message\n");
 			    	return EXIT_FAILURE;

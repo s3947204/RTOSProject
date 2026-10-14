@@ -72,7 +72,7 @@ void* serverRun(void *arg){
         }
 
         /* A message (presumably ours) received, handle */
-        printf("Rail crossing heartbeat %d, Rail crossing state %d\n", msg.data, msg.state);
+        printf("Rail crossing heartbeat %d, Rail crossing state %d\n", msg.crossingHeartbeat, msg.crossingState);
         MsgReply(rcvid, EOK, 0, 0);
     }
     return NULL;

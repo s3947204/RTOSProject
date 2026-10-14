@@ -16,8 +16,8 @@ typedef struct _pulse msg_header_t;
 /* Our real data comes after the header */
 typedef struct _my_data {
     msg_header_t hdr;
-    int          data;
-    int			state;
+    int          crossingHeartbeat;
+    int			 crossingState;
 } my_data_t;
 
 
