@@ -89,14 +89,14 @@ void *railSensor (void *data) { //rail sensor read thread
 	while ((key = getchar()) != EOF){
 		pthread_mutex_lock(&stateMutex);
 
-		if (key == 't') {
+		if (CurState == State2){
+			break;
+		}else if (key == 't') {
 			CurState = State1;
 		} else if (key == 'n') {
 			CurState = State0;
-		}else if (CurState == State2){
-			pthread_mutex_unlock(&stateMutex);
-			break;
 		}
+
 		pthread_mutex_unlock(&stateMutex);
 	}
 	return NULL;
@@ -184,8 +184,8 @@ int main(void) {
 
 			if (state == State0) {
 				CrossingOpen = true;
-				gatesLowered = false;
-				//gatesLowered = true; //Simulate a component fail
+				//gatesLowered = false;
+				gatesLowered = true; //Simulate a component fail
 				redLight = false;
 				crossingAlarm = false;
 				trainSignalRed = true;

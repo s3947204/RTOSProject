@@ -73,6 +73,9 @@ void* serverRun(void *arg){
 
         /* A message (presumably ours) received, handle */
         printf("Rail crossing heartbeat %d, Rail crossing state %d\n", msg.crossingHeartbeat, msg.crossingState);
+        if (msg.crossingState == 2){
+        	printf("Crossing error\n");
+        }
         MsgReply(rcvid, EOK, 0, 0);
     }
     return NULL;
