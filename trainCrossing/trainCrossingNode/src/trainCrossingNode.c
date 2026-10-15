@@ -302,7 +302,7 @@ int main(void) {
 			return 1;
 	}
 
-	enum states lastState = State2;
+	enum states lastState;
 
 	while(1) {
 		enum states state;
