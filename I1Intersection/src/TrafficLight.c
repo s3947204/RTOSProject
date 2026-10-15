@@ -1,5 +1,6 @@
 #include "TrafficLight.h"
 
+
 phase cycle[NUM_PHASES] = {
 	{ "NSG-EWR", 10, DIR_EW, DIR_NS, TYPE_GREEN}, // hold until EW sensor goes off
 	{ "NSY-EWR", 3, DIR_NONE, DIR_NS, TYPE_YELLOW},
@@ -8,7 +9,6 @@ phase cycle[NUM_PHASES] = {
 	{ "NSR-EWY", 3, DIR_NONE, DIR_EW, TYPE_YELLOW},
 	{ "NSR-EWR", 1, DIR_NONE, DIR_EW, TYPE_ALLRED}
 };
-
 // This needs to match this enum in the .h file
 // typedef enum {PED_RED, PED_GREEN, PED_FLASHING} PedState;
 char *pedOutputString[] = { "RED", "GREEN", "FLASHING" };
@@ -25,6 +25,7 @@ RoadState* roadOf(TrafficParam *param, Direction dir){
 void trafficSetSensor(TrafficParam *param, Direction dir){
     roadOf(param, dir)->carSensor = 1;
 }
+
 void trafficSetPed(TrafficParam *param, Direction dir){
     if(!roadOf(param, dir)->pedActive){
         roadOf(param, dir)->pedRequest = 1;

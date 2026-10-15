@@ -74,7 +74,6 @@ void *clientRun(void *arg){
 	        // Send a pulse to the main thread and then the main thread
 	        // can call toggle mode on traffic
 			if(reply.cmd == MODE_TOGGLE){
-				printf("Toggling Modes");
 				MsgSendPulse(param->eventCoid, -1, MODE_TOGGLE_PULSE, 0);
 			}
 		}

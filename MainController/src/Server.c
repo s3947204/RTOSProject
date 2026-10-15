@@ -1,10 +1,9 @@
 #include "Server.h"
 
-#define NUM_PHASES 6
 char *pedOutputString[] = { "RED", "GREEN", "FLASHING" };
 char *modeOutputSring[] = { "Cycling", "Sensor" };
 
-phase cycle[NUM_PHASES] = {
+phase cycleIntersectionOne[6] = {
 	{ "NSG-EWR", 10, DIR_EW, DIR_NS, TYPE_GREEN}, // hold until EW sensor goes off
 	{ "NSY-EWR", 3, DIR_NONE, DIR_NS, TYPE_YELLOW},
 	{ "NSR-EWR", 1, DIR_NONE, DIR_NS, TYPE_ALLRED},
@@ -13,12 +12,30 @@ phase cycle[NUM_PHASES] = {
 	{ "NSR-EWR", 1, DIR_NONE, DIR_EW, TYPE_ALLRED}
 };
 
+phase cycleIntersectionTwo[12] = {
+    { "NSG-EWR",   10, DIR_EW,   DIR_NS, TYPE_GREEN  },
+    { "NSY-EWR",    3, DIR_NONE, DIR_NS, TYPE_YELLOW },
+    { "NSR-EWR",    1, DIR_NONE, DIR_NS, TYPE_ALLRED },
+
+    { "NSRR-EWRG",  6, DIR_NONE, DIR_NONE, TYPE_ALLRED  },
+    { "NSRR-EWRY",  3, DIR_NONE, DIR_NONE, TYPE_ALLRED  },
+    { "NSRR-EWRR",  1, DIR_NONE, DIR_NONE, TYPE_ALLRED  },
+
+    { "NSR-EWG",   10, DIR_NS,   DIR_EW,   TYPE_GREEN  },
+    { "NSR-EWY",    3, DIR_NONE, DIR_EW,   TYPE_YELLOW },
+    { "NSR-EWR",    1, DIR_NONE, DIR_EW,   TYPE_ALLRED },
+
+    { "NSRG-EWRR",  6, DIR_NONE, DIR_NONE, TYPE_ALLRED  },
+    { "NSRY-EWRR",  3, DIR_NONE, DIR_NONE, TYPE_ALLRED  },
+    { "NSRR-EWRR",  1, DIR_NONE, DIR_NONE, TYPE_ALLRED  }
+};
 int serverInit(ServerParam *param){
 	printf("MainController: Creating the server\n");
 	param->attach = name_attach(NULL, ATTACH_POINT, NAME_FLAG_ATTACH_GLOBAL);
 
     param->selfCoid = -1;
-    param->togglePending = 0;
+    param->togglePending[0] = 0;
+    param->togglePending[1] = 0;
 
 	if ( param->attach == NULL) {
 		printf("MainController: Creating a attach point failed \n");
@@ -72,8 +89,11 @@ void* serverRun(void *arg){
                  * reply now or later.
                  */
                 break;
-            case TOGGLE_PULSE:
-            	param->togglePending = 1;
+            case TOGGLE_PULSE_INT1:
+            	param->togglePending[0] = 1;
+            	break;
+            case TOGGLE_PULSE_INT2:
+            	param->togglePending[1] = 1;
             	break;
             default:
                 /*
@@ -113,14 +133,27 @@ void* serverRun(void *arg){
 
             printf("I1: Mode: %s | Phase: %s | Elapsed: %ds | NS Ped: %s | EW Ped: %s | NS Car Sensor: %d | EW Car Sensor: %d | NS Ped Req: %d | EW Ped Req: %d\n",
             		modeOutputSring[s->mode],
-    				cycle[s->phase].lights, s->elapsed, pedOutputString[s->nsPed], pedOutputString[s->ewPed],
+					cycleIntersectionOne[s->phase].lights, s->elapsed, pedOutputString[s->nsPed], pedOutputString[s->ewPed],
     				s->nsCar, s->ewCar, s->nsPedReq, s->ewPedReq);
 
             reply_t reply = { CMD_NONE };
-            if (param->togglePending == 1){
-            	param->togglePending = 0;
+            if (param->togglePending[0] == 1){
+            	param->togglePending[0] = 0;
             	reply.cmd = MODE_TOGGLE;
             }
+
+            MsgReply(rcvid, EOK, &reply, sizeof(reply));
+        }else if(msg.header.id == 2){
+            traffic_status_t *s = &msg.traffic;
+            printf("I2: Mode: %s | Phase: %s | Elapsed: %ds | NS Ped: %s | EW Ped: %s | NS Car Sensor: %d | EW Car Sensor: %d | NS Ped Req: %d | EW Ped Req: %d\n",
+            		modeOutputSring[s->mode],
+					cycleIntersectionTwo[s->phase].lights, s->elapsed, pedOutputString[s->nsPed], pedOutputString[s->ewPed],
+    				s->nsCar, s->ewCar, s->nsPedReq, s->ewPedReq);
+            reply_t reply = { CMD_NONE };
+            if (param->togglePending[1] == 1){
+				param->togglePending[1] = 0;
+				reply.cmd = MODE_TOGGLE;
+			}
             MsgReply(rcvid, EOK, &reply, sizeof(reply));
         }else if(msg.header.id == 3){
         	crossing_status_t *s = &msg.crossing;
@@ -142,10 +175,13 @@ void *serverConsole(void *arg){
     char line[16];
 
     printf("Press t + Enter to toggle the mode of intersection 1\n");
+    printf("Press T + Enter to toggle the mode of intersection 2\n");
     while(fgets(line, sizeof(line), stdin)){
         if(line[0] == 't'){
-            MsgSendPulse(param->selfCoid, -1, TOGGLE_PULSE, 0);
-        } else {
+            MsgSendPulse(param->selfCoid, -1, TOGGLE_PULSE_INT1, 0);
+        }else if(line[0] == 'T'){
+        	MsgSendPulse(param->selfCoid, -1, TOGGLE_PULSE_INT2, 0);
+        }else {
             printf("Unknown command '%c' (t = toggle mode)\n", line[0]);
         }
     }

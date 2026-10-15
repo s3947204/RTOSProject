@@ -11,7 +11,8 @@
 
 
 #define ATTACH_POINT "MainControllerServer"
-#define TOGGLE_PULSE  (_PULSE_CODE_MINAVAIL + 1)
+#define TOGGLE_PULSE_INT1  (_PULSE_CODE_MINAVAIL + 1)
+#define TOGGLE_PULSE_INT2  (_PULSE_CODE_MINAVAIL + 2)
 
 /* We specify the header as being at least a pulse */
 typedef struct _pulse msg_header_t;
@@ -27,17 +28,6 @@ typedef struct {
 	PhaseKind kind;
 } phase;
 
-
-//typedef struct _my_data {
-//    msg_header_t hdr;
-//    int id;
-//    int mode;         		// MODE_CYCLING = 0, MODE_SENSOR = 1
-//    int phase;        		// index into the phase table
-//    int elapsed;      		// seconds in this phase
-//    int nsPed, ewPed; 		// PedState: 0 RED, 1 GREEN, 2 FLASHING
-//    int nsCar, ewCar; 		// car waiting
-//    int nsPedReq, ewPedReq;
-//} traffic_status_t;
 
 /* Common header for all nodes */
 typedef struct {
@@ -70,7 +60,7 @@ typedef struct {
 typedef struct {
 	name_attach_t *attach;
 	int selfCoid;
-	int togglePending;
+	int togglePending[2];
 } ServerParam;
 
 typedef enum { CMD_NONE, MODE_TOGGLE } Cmd;

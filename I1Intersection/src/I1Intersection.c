@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
 					traffic.mode = MODE_CYCLING;
 				}
 				printf("Toggling mode\n");
+				break;
 			default:
 				break;
 			}
