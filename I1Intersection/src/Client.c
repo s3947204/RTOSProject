@@ -1,4 +1,5 @@
 #include "Client.h"
+#include "TrafficLight.h"
 
 int clientInit(ClientParam *param){
 	printf("Starting client \n");
@@ -47,21 +48,25 @@ void clientCleanUp(ClientParam *param){
 	}
 }
 
+
 void *clientRun(void *arg){
 	ClientParam *param = (ClientParam *)arg;
 	my_message_t pulseMsg;
-	my_data_t msg;
-	int count = 0;
+	traffic_status_t status;
 
 	while(1){
 		int rcvid = MsgReceive(param->mainChid, &pulseMsg, sizeof(pulseMsg), NULL);
 		if(rcvid == 0 && pulseMsg.code == STATUS_DUE){
-			memset(&msg, 0, sizeof(msg));
-			msg.hdr.type = 0x00;
-			msg.hdr.subtype = 0x00;
-			msg.data = count++;
-	        printf("Client sending %d \n", msg.data);
-	        if (MsgSend(param->serverCoid, &msg, sizeof(msg), NULL, 0) == -1) {
+			memset(&status, 0, sizeof(status));
+
+	        int statusRequest = 10;
+
+	        MsgSend(param->eventCoid,
+	                &statusRequest, sizeof(traffic_status_t),
+	                &status, sizeof(traffic_status_t));
+
+
+	        if (MsgSend(param->serverCoid, &status, sizeof(status), NULL, 0) == -1) {
 	        	printf("Error sending message to server \n");
 	        }
 		}

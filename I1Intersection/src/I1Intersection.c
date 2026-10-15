@@ -10,13 +10,18 @@ int main(int argc, char *argv[])
 {
 	printf("main thread started....\n");
 	int rcvid;
-	my_message_t msg;
+	union {
+	    my_message_t pulse;
+	    int request;
+	} msg;
     ClientParam  client;
 	TimerParam timerParam;
 	InputParam inputParam;
 	TrafficParam traffic;
 	// separates the connection from the Timer
 	EventParam inputAndTimerEventParam;
+	int clientInitSuccess;
+
 
 
     pthread_t input, clientThread;
@@ -26,7 +31,8 @@ int main(int argc, char *argv[])
 
 	}
 
-	if (clientInit(&client) == -1) {
+	clientInitSuccess = clientInit(&client);
+	if (clientInitSuccess == -1) {
 		printf("Failed to initialise client connections\n");
 	}
 
@@ -34,7 +40,12 @@ int main(int argc, char *argv[])
 	inputParam.coid = inputAndTimerEventParam.coid;
 
     pthread_create(&input, NULL, inputThread, &inputParam);
-    pthread_create(&clientThread, NULL, clientRun, &client);
+
+    if(clientInitSuccess == 0){
+    	printf("Creating client thread\n");
+    	client.eventCoid = inputAndTimerEventParam.coid;
+    	pthread_create(&clientThread, NULL, clientRun, &client);
+    }
 
 	// initialise the timer for a step of 1s
     // timer needs a connection id to send a message to this channel
@@ -45,20 +56,23 @@ int main(int argc, char *argv[])
 
 
 	printf("Timer started. Waiting for pulses...\n");
-	trafficInit(&traffic, MODE_SENSOR);
 
+	trafficInit(&traffic, MODE_SENSOR);
 	while(1){
 		rcvid = MsgReceive(inputAndTimerEventParam.chid, &msg, sizeof(msg), NULL);
 		if(rcvid == -1){
 			printf("Error while receiving message\n");
 			break;
 		}
+
 		// rcvid == 0 -> a pulse
 		if(rcvid == 0){
-			switch(msg.code){
+			switch(msg.pulse.code){
 			case STEP_TIMER:
 				trafficTick(&traffic);
-	            MsgSendPulse(client.mainCoid, -1, STATUS_DUE, 0);
+				if(clientInitSuccess == 0){
+					MsgSendPulse(client.mainCoid, -1, STATUS_DUE, 0);
+				}
 				break;
 			case CAR_NS:
 				trafficSetSensor(&traffic, DIR_NS);
@@ -79,6 +93,22 @@ int main(int argc, char *argv[])
 			default:
 				break;
 			}
+		}
+
+		if(rcvid > 0){
+			traffic_status_t status = {
+				 .mode = traffic.mode,
+				 .phase = traffic.phase,
+				 .elapsed = traffic.elapsed,
+				 .nsPed = pedState(&traffic, DIR_NS),
+				 .ewPed = pedState(&traffic, DIR_EW),
+				 .nsCar = traffic.ns.carSensor,
+				 .ewCar = traffic.ew.carSensor,
+				 .nsPedReq = traffic.ns.pedRequest,
+				 .ewPedReq = traffic.ew.pedRequest,
+			};
+
+			MsgReply(rcvid, EOK, &status, sizeof(status));
 		}
 	}
 

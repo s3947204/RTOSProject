@@ -14,7 +14,7 @@ int serverInit(ServerParam *param){
 }
 
 void* serverRun(void *arg){
-	my_data_t msg;
+	traffic_status_t msg;
     ServerParam *param = (ServerParam *)arg;
 	int rcvid;
 
@@ -74,7 +74,11 @@ void* serverRun(void *arg){
         }
 
         /* A message (presumably ours) received, handle */
-        printf("Server receive %d \n", msg.data);
+
+        printf("Mode: %d | Phase: %d | Elapsed: %ds | NS Ped: %d | EW Ped: %d | NS Car: %d | EW Car: %d | NS Ped Req: %d | EW Ped Req: %d\n",
+        		msg.mode,
+				msg.phase, msg.elapsed, msg.nsPed, msg.ewPed,
+				msg.nsCar, msg.ewCar, msg.nsPedReq, msg.ewPedReq);
         MsgReply(rcvid, EOK, 0, 0);
     }
     return NULL;

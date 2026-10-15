@@ -40,6 +40,7 @@ void trafficInit(TrafficParam *param, int mode);
 void trafficSetSensor(TrafficParam *param, Direction dir);
 void trafficSetPed(TrafficParam *param, Direction dir);
 void trafficTick(TrafficParam *param);
+PedState pedState(TrafficParam *param, Direction dir);
 
 #endif
 
