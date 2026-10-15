@@ -22,6 +22,7 @@ typedef struct {
 } phase;
 
 typedef struct {
+	int carSensor;
 	int pedRequest; 	// Button pressed for a particular road
 	int pedActive;
 } RoadState;
@@ -36,6 +37,8 @@ typedef struct {
 } TrafficParam;
 
 void trafficInit(TrafficParam *param, int mode);
+void trafficSetSensor(TrafficParam *param, Direction dir);
+void trafficSetPed(TrafficParam *param, Direction dir);
 void trafficTick(TrafficParam *param);
 
 #endif

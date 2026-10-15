@@ -13,15 +13,6 @@ phase cycle[NUM_PHASES] = {
 // typedef enum {PED_RED, PED_GREEN, PED_FLASHING} PedState;
 char *pedOutputString[] = { "RED", "GREEN", "FLASHING" };
 
-int readSensor(){
-	return (rand() % 5) == 0;
-}
-
-// Random pedestrian button
-void readPedButtons(TrafficParam *param){
-	param->ns.pedRequest = 1;
-	param->ew.pedRequest = 1;
-}
 
 RoadState* roadOf(TrafficParam *param, Direction dir){
 	if(dir == DIR_NS){
@@ -29,6 +20,15 @@ RoadState* roadOf(TrafficParam *param, Direction dir){
 	}else{
 		return &param->ew;
 	}
+}
+
+void trafficSetSensor(TrafficParam *param, Direction dir){
+    roadOf(param, dir)->carSensor = 1;
+}
+void trafficSetPed(TrafficParam *param, Direction dir){
+    if(!roadOf(param, dir)->pedActive){
+        roadOf(param, dir)->pedRequest = 1;
+    }
 }
 
 // Are we currently in the green phase for a given dir?
@@ -82,14 +82,17 @@ void leavePhase(TrafficParam *param){
 	phase *p = &cycle[param->phase];
 	// When leaving from a green phase, set ped active to 0
 	if(p->kind == TYPE_GREEN){
-		roadOf(param, p->dir) -> pedActive = 0;
+		RoadState* road = roadOf(param, p->dir);
+		road->pedActive = 0;
+		road->carSensor = 0;
 	}
 }
 
 int hasDemand(TrafficParam *param, Direction dir){
 	// if there is car waiting at the given direction
 	// or if there is a ped request
-	return readSensor(dir) || roadOf(param, dir) -> pedRequest;
+	RoadState *road = roadOf(param, dir);
+	return road->carSensor || road->pedRequest;
 }
 
 int phaseFinished(TrafficParam *param){
@@ -119,8 +122,6 @@ void printStatus(TrafficParam *param){
 	PedState ns = pedState(param, DIR_NS);
 	PedState ew = pedState(param, DIR_EW);
 
-	RoadState *EWRoad = roadOf(param, DIR_EW);
-	RoadState *NSRoad = roadOf(param, DIR_NS);
 	// Source - https://stackoverflow.com/a/7660837
 	// Posted by Avinash Katiyar, modified by community. See post 'Timeline' for change history
 	// Retrieved 2026-10-14, License - CC BY-SA 3.0
@@ -145,9 +146,11 @@ void trafficInit(TrafficParam *param, int mode){
 
 	param->ns.pedRequest = 0; 		// No request for sensor
 	param->ns.pedActive = 0;  		// Currently inactive
+	param->ns.carSensor = 0;
 
 	param->ew.pedRequest = 0; 		// No request for sensor
 	param->ew.pedActive = 0;  		// Currently inactive
+	param->ew.carSensor = 0;
 
 	enterPhase(param);
 	printStatus(param);
@@ -155,7 +158,6 @@ void trafficInit(TrafficParam *param, int mode){
 
 void trafficTick(TrafficParam *param){
 	param->elapsed++;
-    readPedButtons(param);
 
 	if(phaseFinished(param)){
 		leavePhase(param);
