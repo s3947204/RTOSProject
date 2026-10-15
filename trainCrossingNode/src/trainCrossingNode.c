@@ -5,83 +5,6 @@
 #include "Timer.h"
 #include <sys/neutrino.h>
 #include "Client.h"
-#include <hw/inout.h>
-#include <sys/mman.h>
-#include <stdint.h>
-#include <unistd.h>
-
-#define Bit_0 (1<<0)
-#define Bit_1 (1<<1)
-#define Bit_2 (1<<2)
-#define Bit_3 (1<<3)
-#define Bit_4 (1<<4)
-#define Bit_5 (1<<5)
-#define Bit_6 (1<<6)
-#define Bit_7 (1<<7)
-#define Bit_8 (1<<8)
-#define Bit_9 (1<<9)
-#define Bit_10 (1<<10)
-#define Bit_11 (1<<11)
-#define Bit_12 (1<<12)
-#define Bit_13 (1<<13)
-#define Bit_14 (1<<14)
-#define Bit_15 (1<<15)
-#define Bit_16 (1<<16)
-#define Bit_17 (1<<17)
-#define Bit_18 (1<<18)
-#define Bit_19 (1<<19)
-#define Bit_20 (1<<20)
-#define Bit_21 (1<<21)
-#define Bit_22 (1<<22)
-#define Bit_23 (1<<23)
-#define Bit_24 (1<<24)
-#define Bit_25 (1<<25)
-#define Bit_26 (1<<26)
-#define Bit_27 (1<<27)
-#define Bit_28 (1<<28)
-#define Bit_29 (1<<29)
-#define Bit_30 (1<<30)
-#define Bit_31 (1<<31)
-#define Bit_32 (1<<32)
-
-#define BCM2711_GPIO1_BASE	0xFE200000	//GPIO base offset
-#define BCM2711_GPIO_SIZE	0x000000FF	//size of the GPIO
-
-#define D0 (1<<17) // Pin 11 - red lights 1
-#define D1 (1<<27) // Pin 13 - red lights 2
-#define D2 (1<<05) // Pin 29 - green lights
-#define D3 (1<<06) // Pin 31 - red lights
-
-#define Dw D0|D1|D2|D3
-
-#define GPFSEL0						0x00 // function select register 0 (GPIO9:GPIO0)
-#define GPFSEL1						0x04 // function select register 1 (GPIO19:GPIO10)
-#define GPFSEL2						0x08 // function select register 2 (GPIO29:GPIO20)
-#define GPSET0 						0x1C // set register 0
-#define GPCLR0 						0x28 // clear register 0
-
-void Setup_Pin(uintptr_t gpio_add, unsigned int clear_bits, unsigned int set_bits) {
-	volatile uint32_t	val = 0;
-	val = in32(gpio_add); //Read in initial
-
-	val &= ~ (clear_bits | set_bits); // clear the bits that we might change
-	val |= set_bits;
-
-	out32(gpio_add, val); // Assert the new value to the register
-}
-
-void Set_IO_High(uintptr_t gpio_add, unsigned int bits) {
-	volatile uint32_t	val = 0;
-	val = in32(gpio_add); //Read in initial val
-
-	val &= ~(Dw); // clear the bits that we might change
-	val |= bits;  // set high
-
-	out32(gpio_add, val); // Assert the new value to the register
-}
-
-// GPIO global pointers
-uintptr_t gpio1_base;
 
 enum states {
 	State0, //Waiting for train
@@ -142,6 +65,7 @@ void *communication (void *data) { //communication thread
 		if(rcvid == 0){
 			// can also check the pulse code here to make sure its from the timer
 			if (msg.code == STATUS_TIMER) {
+				clientMsg.id = 3;
 			    clientMsg.crossingHeartbeat = dataToSend; //heartbeat message
 			    clientMsg.crossingState = (int)CurState; //state message
 			    if (MsgSend(clientParam.serverCoid, &clientMsg, sizeof(clientMsg), NULL, 0) == -1) {
@@ -155,6 +79,7 @@ void *communication (void *data) { //communication thread
 
 	clientCleanUp(&clientParam);
 	timerCleanUp(&timerParam);
+	return NULL;
 }
 
 void *railSensor (void *data) { //rail sensor read thread
@@ -180,11 +105,9 @@ void *railSensor (void *data) { //rail sensor read thread
 }
 
 void *crossingOutput (void *data){ //crossing output thread
-	gpio1_base = mmap_device_io(BCM2711_GPIO_SIZE, BCM2711_GPIO1_BASE);
 	if (CrossingOpen){
 		if (trainSignalRed){
 				printf("The train signal is red\n");
-				Set_IO_High(gpio1_base + GPSET0, D3);
 			} else {
 				FAIL_TO_STATE2();
 			}
@@ -209,8 +132,8 @@ void *crossingOutput (void *data){ //crossing output thread
 			printf("Waiting for train\n");
 
 	}else if (!CrossingOpen){
-		printf("Train detected\n");
 		if (gatesLowered) {
+			printf("Train detected\n");
 				printf("The gates are down\n");
 			} else {
 				FAIL_TO_STATE2();
@@ -229,66 +152,14 @@ void *crossingOutput (void *data){ //crossing output thread
 			}
 			if (!trainSignalRed){
 				printf("The train signal is green\n");
-				Set_IO_High(gpio1_base + GPSET0, D2);
 			} else {
 				FAIL_TO_STATE2();
-			}
-
-			if (redLight | crossingAlarm){
-				while (1){
-					pthread_mutex_lock(&stateMutex);
-					bool trainDetected = (CurState == State1);
-					pthread_mutex_unlock(&stateMutex);
-
-					if (!trainDetected)
-						break;
-
-					out32(gpio1_base + GPCLR0, D0);
-					out32(gpio1_base + GPSET0, D1);
-					usleep(500000);
-
-					out32(gpio1_base + GPSET0, D0);
-					out32(gpio1_base + GPCLR0, D1);
-					usleep(500000);
-
-					out32(gpio1_base + GPCLR0, D0);
-					out32(gpio1_base + GPSET0, D1);
-				}
 			}
 	}
 	return NULL;
 }
 
 int main(void) {
-	volatile uint32_t	val = 0;
-
-	gpio1_base = mmap_device_io(BCM2711_GPIO_SIZE, BCM2711_GPIO1_BASE);
-
-	if( !gpio1_base ){
-			// An error has occurred
-			perror("Can't map Control Base Module / GPIO Base");
-			printf("Mapping IO ERROR! Main Terminated...!\n");
-			return EXIT_SUCCESS;
-	}
-	printf("I/O Port mapping is Successful!\n");
-
-	// Configure D0 (GPIO17) 23:21 = 001
-	Setup_Pin(gpio1_base + GPFSEL1, Bit_23 | Bit_22, Bit_21);
-
-	// Configure D1 (GPIO27) 23:21 = 001
-	Setup_Pin(gpio1_base + GPFSEL2, Bit_23 | Bit_22, Bit_21);
-
-	// Configure D2 (GPIO05) 17:15 = 001
-	Setup_Pin(gpio1_base + GPFSEL0, Bit_17 | Bit_16, Bit_15);
-
-	// Configure D3 (GPIO06) 20:18 = 001
-	Setup_Pin(gpio1_base + GPFSEL0, Bit_20 | Bit_19, Bit_18);
-
-	// make all data zero
-	Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
-	Set_IO_High(gpio1_base + GPSET0, Dw); // set all data bits to high
-	Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
-
 
 	pthread_t th1, th2, th3;
 
@@ -312,9 +183,6 @@ int main(void) {
 		pthread_mutex_unlock(&stateMutex);
 
 		if (state != lastState) {
-			Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
-			Set_IO_High(gpio1_base + GPSET0, Dw); // set all data bits to high
-			Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
 
 			if (state == State0) {
 				CrossingOpen = true;
@@ -331,7 +199,6 @@ int main(void) {
 				crossingAlarm = true;
 				trainSignalRed = false;
 			}else if (state == State2){
-				Set_IO_High(gpio1_base + GPSET0, D3); // set D3 to high
 				break;
 			}
 		if (pthread_create (&th3, NULL, crossingOutput, NULL) != 0) {

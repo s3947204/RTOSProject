@@ -37,8 +37,13 @@ int serverInit(ServerParam *param){
 }
 
 void* serverRun(void *arg){
-	traffic_status_t msg;
-    ServerParam *param = (ServerParam *)arg;
+	union {
+		node_message_t header;
+		traffic_status_t traffic;
+		crossing_status_t crossing;
+	} msg;
+
+	ServerParam *param = (ServerParam *)arg;
 	int rcvid;
 
     /* Do your MsgReceive's here now with the chid */
@@ -50,14 +55,14 @@ void* serverRun(void *arg){
         }
 
         if (rcvid == 0) {       /* Pulse received */
-            switch (msg.hdr.code) {
+            switch (msg.header.hdr.code) {
             case _PULSE_CODE_DISCONNECT:
                 /*
                  * A client disconnected all its connections (called
                  * name_close() for each name_open() of our name) or
                  * terminated
                  */
-                ConnectDetach(msg.hdr.scoid);
+                ConnectDetach(msg.header.hdr.scoid);
                 break;
 
             case _PULSE_CODE_UNBLOCK:
@@ -85,13 +90,13 @@ void* serverRun(void *arg){
          * If the Global Name Service (gns) is running, name_open()
          * sends a connect message. The server must EOK it.
          */
-        if (msg.hdr.type == _IO_CONNECT) {
+        if (msg.header.hdr.type == _IO_CONNECT) {
             MsgReply(rcvid, EOK, NULL, 0);
             continue;
         }
 
         /* Some other I/O message was received; reject it */
-        if (msg.hdr.type > _IO_BASE && msg.hdr.type <= _IO_MAX) {
+        if (msg.header.hdr.type > _IO_BASE && msg.header.hdr.type <= _IO_MAX) {
             MsgError(rcvid, ENOSYS);
             continue;
         }
@@ -102,11 +107,14 @@ void* serverRun(void *arg){
         // Id = 2 - intersection 2
         // Id = 3 - train intersection
         // Message is from intersection 1
-        if(msg.id == 1){
+        if(msg.header.id == 1){
+            traffic_status_t *s = &msg.traffic;
+
+
             printf("I1: Mode: %s | Phase: %s | Elapsed: %ds | NS Ped: %s | EW Ped: %s | NS Car Sensor: %d | EW Car Sensor: %d | NS Ped Req: %d | EW Ped Req: %d\n",
-            		modeOutputSring[msg.mode],
-    				cycle[msg.phase].lights, msg.elapsed, pedOutputString[msg.nsPed], pedOutputString[msg.ewPed],
-    				msg.nsCar, msg.ewCar, msg.nsPedReq, msg.ewPedReq);
+            		modeOutputSring[s->mode],
+    				cycle[s->phase].lights, s->elapsed, pedOutputString[s->nsPed], pedOutputString[s->ewPed],
+    				s->nsCar, s->ewCar, s->nsPedReq, s->ewPedReq);
 
             reply_t reply = { CMD_NONE };
             if (param->togglePending == 1){
@@ -114,6 +122,16 @@ void* serverRun(void *arg){
             	reply.cmd = MODE_TOGGLE;
             }
             MsgReply(rcvid, EOK, &reply, sizeof(reply));
+        }else if(msg.header.id == 3){
+        	crossing_status_t *s = &msg.crossing;
+
+			printf("X1: Heartbeat: %d | State: %d\n",
+				   s->crossingHeartbeat,
+				   s->crossingState);
+	        MsgReply(rcvid, EOK, NULL, 0);
+        }else{
+        	printf("Message received from unknown node\n");
+        	MsgReply(rcvid, EOK, NULL, 0);
         }
     }
     return NULL;

@@ -28,16 +28,43 @@ typedef struct {
 } phase;
 
 
-typedef struct _my_data {
+//typedef struct _my_data {
+//    msg_header_t hdr;
+//    int id;
+//    int mode;         		// MODE_CYCLING = 0, MODE_SENSOR = 1
+//    int phase;        		// index into the phase table
+//    int elapsed;      		// seconds in this phase
+//    int nsPed, ewPed; 		// PedState: 0 RED, 1 GREEN, 2 FLASHING
+//    int nsCar, ewCar; 		// car waiting
+//    int nsPedReq, ewPedReq;
+//} traffic_status_t;
+
+/* Common header for all nodes */
+typedef struct {
     msg_header_t hdr;
     int id;
-    int mode;         		// MODE_CYCLING = 0, MODE_SENSOR = 1
-    int phase;        		// index into the phase table
-    int elapsed;      		// seconds in this phase
-    int nsPed, ewPed; 		// PedState: 0 RED, 1 GREEN, 2 FLASHING
-    int nsCar, ewCar; 		// car waiting
+    int type;
+} node_message_t;
+
+/* Intersection status */
+typedef struct {
+    msg_header_t hdr;
+    int id;
+    int mode;
+    int phase;
+    int elapsed;
+    int nsPed, ewPed;
+    int nsCar, ewCar;
     int nsPedReq, ewPedReq;
 } traffic_status_t;
+
+/* Train crossing status */
+typedef struct {
+    msg_header_t hdr;
+    int id;
+    int crossingHeartbeat;
+    int crossingState;
+} crossing_status_t;
 
 
 typedef struct {
