@@ -13,21 +13,30 @@ int main(int argc, char *argv[])
 	TimerParam timerParam;
 	InputParam inputParam;
 	TrafficParam traffic;
-	EventParam eventParam;
+
+	// separates the connection from the Timer
+	EventParam inputAndTimerEventParam;
+
+	// we will create another channel to send a message to comms thread
+	// that will then connect to the global channel and send status and receive command
+
+
 	pthread_t input;
 
-	srand(time(NULL));
 
-	if(eventInit(&eventParam) == -1){
+	if(eventInit(&inputAndTimerEventParam) == -1){
 		printf("Failed to intialise connection");
 		return EXIT_FAILURE;
 	}
 
-	inputParam.coid = eventParam.coid;
+	// the input thread needs to send the message to this connection
+	inputParam.coid = inputAndTimerEventParam.coid;
+
     pthread_create(&input, NULL, inputThread, &inputParam);
 
-	// intialise the timer for a step of 1s
-	if(timerInit(&timerParam, eventParam.coid, 1) == -1){
+	// initialise the timer for a step of 1s
+    // timer needs a connection id to send a message to this channel
+	if(timerInit(&timerParam, inputAndTimerEventParam.coid, 1) == -1){
 		printf("Failed to initialise timer\n");
 		return EXIT_FAILURE;
 	}
@@ -37,7 +46,7 @@ int main(int argc, char *argv[])
 	trafficInit(&traffic, MODE_SENSOR);
 
 	while(1){
-		rcvid = MsgReceive(eventParam.chid, &msg, sizeof(msg), NULL);
+		rcvid = MsgReceive(inputAndTimerEventParam.chid, &msg, sizeof(msg), NULL);
 		if(rcvid == -1){
 			printf("Error while receiving message\n");
 			break;
