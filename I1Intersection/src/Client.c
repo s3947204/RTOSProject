@@ -6,8 +6,10 @@ int clientInit(ClientParam *param){
 	param->mainCoid = -1;
 	param->serverCoid = -1;
 
-	param->chid = ChannelCreate(0);
-	if(param->chid == -1){
+	// we will create another channel to get a message from main thread
+	// that will then connect to the global channel and send status and receive command
+	param->mainChid = ChannelCreate(0);
+	if(param->mainChid == -1){
 		perror("ChannelCreate");
 		return -1;
 	}
@@ -19,6 +21,7 @@ int clientInit(ClientParam *param){
 	   return -1;
 	}
 
+	printf("Connecting to server\n");
 	param->serverCoid = name_open(ATTACH_POINT, NAME_FLAG_ATTACH_GLOBAL);
 	if(param->serverCoid == -1){
 	  	printf("Failed to connect to server\n");
@@ -34,12 +37,12 @@ void clientCleanUp(ClientParam *param){
 	}
 
 	if(param->mainCoid != -1){
-		ConnectDetach(param->coid);
+		ConnectDetach(param->mainCoid);
 		param->mainCoid = -1;
 	}
 
 	if(param->mainChid != -1){
-		ChannelDestroy(param->chid);
+		ChannelDestroy(param->mainChid);
 		param->mainChid = -1;
 	}
 }
@@ -51,15 +54,15 @@ void *clientRun(void *arg){
 	int count = 0;
 
 	while(1){
-		int rcvid = MsgReceive(param->mainChid, &pulseMsg, size(pulseMsg), NULL);
+		int rcvid = MsgReceive(param->mainChid, &pulseMsg, sizeof(pulseMsg), NULL);
 		if(rcvid == 0 && pulseMsg.code == STATUS_DUE){
 			memset(&msg, 0, sizeof(msg));
 			msg.hdr.type = 0x00;
 			msg.hdr.subtype = 0x00;
 			msg.data = count++;
 	        printf("Client sending %d \n", msg.data);
-	        if (MsgSend(server_coid, &msg, sizeof(msg), NULL, 0) == -1) {
-	        	printf("Error sending message to server");
+	        if (MsgSend(param->serverCoid, &msg, sizeof(msg), NULL, 0) == -1) {
+	        	printf("Error sending message to server \n");
 	        }
 		}
 	}

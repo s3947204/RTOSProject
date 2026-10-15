@@ -21,6 +21,8 @@ void* serverRun(void *arg){
     /* Do your MsgReceive's here now with the chid */
     while (1) {
         rcvid = MsgReceive(param->attach->chid, &msg, sizeof(msg), NULL);
+        printf("server: rcvid=%d type=%d\n", rcvid, msg.hdr.type);
+        fflush(stdout);
 
         if (rcvid == -1) {      /* Error condition, exit */
             break;

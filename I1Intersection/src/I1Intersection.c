@@ -4,35 +4,37 @@
 #include "TrafficLight.h"
 #include "Event.h"
 #include "Input.h"
+#include "Client.h"
 
 int main(int argc, char *argv[])
 {
 	printf("main thread started....\n");
 	int rcvid;
 	my_message_t msg;
+    ClientParam  client;
 	TimerParam timerParam;
 	InputParam inputParam;
 	TrafficParam traffic;
-
 	// separates the connection from the Timer
 	EventParam inputAndTimerEventParam;
 
-	// we will create another channel to send a message to comms thread
-	// that will then connect to the global channel and send status and receive command
 
-
-	pthread_t input;
-
+    pthread_t input, clientThread;
 
 	if(eventInit(&inputAndTimerEventParam) == -1){
-		printf("Failed to intialise connection");
-		return EXIT_FAILURE;
+		printf("Failed to intialise input and timer connections");
+
+	}
+
+	if (clientInit(&client) == -1) {
+		printf("Failed to initialise client connections\n");
 	}
 
 	// the input thread needs to send the message to this connection
 	inputParam.coid = inputAndTimerEventParam.coid;
 
     pthread_create(&input, NULL, inputThread, &inputParam);
+    pthread_create(&clientThread, NULL, clientRun, &client);
 
 	// initialise the timer for a step of 1s
     // timer needs a connection id to send a message to this channel
@@ -56,6 +58,7 @@ int main(int argc, char *argv[])
 			switch(msg.code){
 			case STEP_TIMER:
 				trafficTick(&traffic);
+	            MsgSendPulse(client.mainCoid, -1, STATUS_DUE, 0);
 				break;
 			case CAR_NS:
 				trafficSetSensor(&traffic, DIR_NS);
