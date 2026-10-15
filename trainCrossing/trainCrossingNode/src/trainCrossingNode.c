@@ -5,9 +5,10 @@
 #include "Timer.h"
 #include <sys/neutrino.h>
 #include "Client.h"
-#include <hw/inout.h> // for in32() and out32();
-#include <sys/mman.h> // for mmap_device_io();
-#include <stdint.h> // for unit32 types
+#include <hw/inout.h>
+#include <sys/mman.h>
+#include <stdint.h>
+#include <unistd.h>
 
 #define Bit_0 (1<<0)
 #define Bit_1 (1<<1)
@@ -48,11 +49,10 @@
 
 #define D0 (1<<17) // Pin 11 - red lights 1
 #define D1 (1<<27) // Pin 13 - red lights 2
-#define D2 (1<<22) // Pin 15 - crossing alarm
-#define D3 (1<<05) // Pin 29 - green lights
-#define D4 (1<<06) // Pin 31 - red lights
+#define D2 (1<<05) // Pin 29 - green lights
+#define D3 (1<<06) // Pin 31 - red lights
 
-#define Dw D0|D1|D2|D3|D4
+#define Dw D0|D1|D2|D3
 
 #define GPFSEL0						0x00 // function select register 0 (GPIO9:GPIO0)
 #define GPFSEL1						0x04 // function select register 1 (GPIO19:GPIO10)
@@ -60,30 +60,23 @@
 #define GPSET0 						0x1C // set register 0
 #define GPCLR0 						0x28 // clear register 0
 
-//#define GPIO_PUP_PDN_CNTRL_REG1		0xe8// pull up pull down register 1
-//#define GPLEV0						0x34// get pin level register 0
-
 void Setup_Pin(uintptr_t gpio_add, unsigned int clear_bits, unsigned int set_bits) {
 	volatile uint32_t	val = 0;
 	val = in32(gpio_add); //Read in initial
-	printf("Initial register value = %#010x\n", val);
 
 	val &= ~ (clear_bits | set_bits); // clear the bits that we might change
 	val |= set_bits;
 
-	printf("New register value     = %#010x\n", val);
 	out32(gpio_add, val); // Assert the new value to the register
 }
 
 void Set_IO_High(uintptr_t gpio_add, unsigned int bits) {
 	volatile uint32_t	val = 0;
 	val = in32(gpio_add); //Read in initial val
-	//printf("Initial register value = %#010x\n", val);
 
 	val &= ~(Dw); // clear the bits that we might change
 	val |= bits;  // set high
 
-	//printf("New register value     = %#010x\n", val);
 	out32(gpio_add, val); // Assert the new value to the register
 }
 
@@ -191,7 +184,7 @@ void *crossingOutput (void *data){ //crossing output thread
 	if (CrossingOpen){
 		if (trainSignalRed){
 				printf("The train signal is red\n");
-				Set_IO_High(gpio1_base + GPSET0, D4); // set D4 to high
+				Set_IO_High(gpio1_base + GPSET0, D3);
 			} else {
 				FAIL_TO_STATE2();
 			}
@@ -216,8 +209,8 @@ void *crossingOutput (void *data){ //crossing output thread
 			printf("Waiting for train\n");
 
 	}else if (!CrossingOpen){
+		printf("Train detected\n");
 		if (gatesLowered) {
-			printf("Train detected\n");
 				printf("The gates are down\n");
 			} else {
 				FAIL_TO_STATE2();
@@ -236,17 +229,37 @@ void *crossingOutput (void *data){ //crossing output thread
 			}
 			if (!trainSignalRed){
 				printf("The train signal is green\n");
-				Set_IO_High(gpio1_base + GPSET0, D3); // set D4 to high
+				Set_IO_High(gpio1_base + GPSET0, D2);
 			} else {
 				FAIL_TO_STATE2();
+			}
+
+			if (redLight | crossingAlarm){
+				while (1){
+					pthread_mutex_lock(&stateMutex);
+					bool trainDetected = (CurState == State1);
+					pthread_mutex_unlock(&stateMutex);
+
+					if (!trainDetected)
+						break;
+
+					out32(gpio1_base + GPCLR0, D0);
+					out32(gpio1_base + GPSET0, D1);
+					usleep(500000);
+
+					out32(gpio1_base + GPSET0, D0);
+					out32(gpio1_base + GPCLR0, D1);
+					usleep(500000);
+
+					out32(gpio1_base + GPCLR0, D0);
+					out32(gpio1_base + GPSET0, D1);
+				}
 			}
 	}
 	return NULL;
 }
 
 int main(void) {
-
-
 	volatile uint32_t	val = 0;
 
 	gpio1_base = mmap_device_io(BCM2711_GPIO_SIZE, BCM2711_GPIO1_BASE);
@@ -259,32 +272,22 @@ int main(void) {
 	}
 	printf("I/O Port mapping is Successful!\n");
 
-	printf("\nD0 set as output\n");
-		// Configure D0 (GPIO17) 23:21 = 001
-		Setup_Pin(gpio1_base + GPFSEL1, Bit_23 | Bit_22, Bit_21);
+	// Configure D0 (GPIO17) 23:21 = 001
+	Setup_Pin(gpio1_base + GPFSEL1, Bit_23 | Bit_22, Bit_21);
 
-		printf("\nD1 set as output\n");
-		// Configure D1 (GPIO27) 23:21 = 001
-		Setup_Pin(gpio1_base + GPFSEL2, Bit_23 | Bit_22, Bit_21);
+	// Configure D1 (GPIO27) 23:21 = 001
+	Setup_Pin(gpio1_base + GPFSEL2, Bit_23 | Bit_22, Bit_21);
 
-		printf("\nD2 set as output\n");
-		// Configure D2 (GPIO22) 8:6 = 001
-		Setup_Pin(gpio1_base + GPFSEL2, Bit_8 | Bit_7, Bit_6);
+	// Configure D2 (GPIO05) 17:15 = 001
+	Setup_Pin(gpio1_base + GPFSEL0, Bit_17 | Bit_16, Bit_15);
 
-		printf("\nD3 set as output\n");
-		// Configure D3 (GPIO05) 17:15 = 001
-		Setup_Pin(gpio1_base + GPFSEL0, Bit_17 | Bit_16, Bit_15);
+	// Configure D3 (GPIO06) 20:18 = 001
+	Setup_Pin(gpio1_base + GPFSEL0, Bit_20 | Bit_19, Bit_18);
 
-		printf("\nD4 set as output\n");
-		// Configure D4 (GPIO06) 20:18 = 001
-		Setup_Pin(gpio1_base + GPFSEL0, Bit_20 | Bit_19, Bit_18);
-
-		// make all data zero
-		Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
-		//usleep(500);
-		Set_IO_High(gpio1_base + GPSET0, Dw); // set all data bits to high
-		//usleep(500);
-		Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
+	// make all data zero
+	Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
+	Set_IO_High(gpio1_base + GPSET0, Dw); // set all data bits to high
+	Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
 
 
 	pthread_t th1, th2, th3;
@@ -299,7 +302,7 @@ int main(void) {
 			return 1;
 	}
 
-	enum states lastState;
+	enum states lastState = State2;
 
 	while(1) {
 		enum states state;
@@ -310,9 +313,7 @@ int main(void) {
 
 		if (state != lastState) {
 			Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
-			//usleep(500);
 			Set_IO_High(gpio1_base + GPSET0, Dw); // set all data bits to high
-			//usleep(500);
 			Set_IO_High(gpio1_base + GPCLR0, Dw); // set all data bits to clear
 
 			if (state == State0) {
@@ -330,7 +331,7 @@ int main(void) {
 				crossingAlarm = true;
 				trainSignalRed = false;
 			}else if (state == State2){
-				Set_IO_High(gpio1_base + GPSET0, D4); // set D4 to high
+				Set_IO_High(gpio1_base + GPSET0, D3); // set D3 to high
 				break;
 			}
 		if (pthread_create (&th3, NULL, crossingOutput, NULL) != 0) {
