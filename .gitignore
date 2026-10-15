@@ -9,4 +9,4 @@ VM_target2
 VM_target3
 **/build/
 **/.settings/
-/GPIO_clear
+GPIO_clear/
