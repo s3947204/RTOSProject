@@ -5,5 +5,7 @@ trainCrossingNode.core
 Makefile
 RP4
 VM_target1
+VM_target2
+VM_target3
 **/build/
 **/.settings/
