@@ -11,9 +11,10 @@
 #define CONTROLLER_ID 1
 #define ATTACH_POINT "MainControllerServer"
 
+typedef enum { CMD_NONE, MODE_TOGGLE } Cmd;
+
 typedef struct {
-    int cmd;
-    int arg;
+	Cmd cmd;
 } reply_t;
 
 typedef struct _pulse msg_header_t;

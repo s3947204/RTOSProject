@@ -90,6 +90,13 @@ int main(int argc, char *argv[])
 				trafficSetPed(&traffic, DIR_EW);
 				printf("Ped present at EW\n");
 				break;
+			case MODE_TOGGLE_PULSE:
+				if(traffic.mode == MODE_CYCLING){
+					traffic.mode = MODE_SENSOR;
+				}else{
+					traffic.mode = MODE_CYCLING;
+				}
+				printf("Toggling mode\n");
 			default:
 				break;
 			}

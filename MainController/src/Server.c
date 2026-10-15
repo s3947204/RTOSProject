@@ -17,8 +17,18 @@ int serverInit(ServerParam *param){
 	printf("MainController: Creating the server\n");
 	param->attach = name_attach(NULL, ATTACH_POINT, NAME_FLAG_ATTACH_GLOBAL);
 
+    param->selfCoid = -1;
+    param->togglePending = 0;
+
 	if ( param->attach == NULL) {
 		printf("MainController: Creating a attach point failed \n");
+		return -1;
+	}
+
+	param->selfCoid = ConnectAttach(ND_LOCAL_NODE, 0, param->attach->chid, _NTO_SIDE_CHANNEL, 0);
+	if(param->selfCoid == -1){
+		perror("ConnectAttach");
+		name_detach(param->attach, 0);
 		return -1;
 	}
 
@@ -57,7 +67,9 @@ void* serverRun(void *arg){
                  * reply now or later.
                  */
                 break;
-
+            case TOGGLE_PULSE:
+            	param->togglePending = 1;
+            	break;
             default:
                 /*
                  * A pulse sent by one of your processes or a
@@ -91,13 +103,32 @@ void* serverRun(void *arg){
         // Id = 3 - train intersection
         // Message is from intersection 1
         if(msg.id == 1){
-            printf("Mode: %s | Phase: %s | Elapsed: %ds | NS Ped: %s | EW Ped: %s | NS Car Sensor: %d | EW Car Sensor: %d | NS Ped Req: %d | EW Ped Req: %d\n",
+            printf("I1: Mode: %s | Phase: %s | Elapsed: %ds | NS Ped: %s | EW Ped: %s | NS Car Sensor: %d | EW Car Sensor: %d | NS Ped Req: %d | EW Ped Req: %d\n",
             		modeOutputSring[msg.mode],
     				cycle[msg.phase].lights, msg.elapsed, pedOutputString[msg.nsPed], pedOutputString[msg.ewPed],
     				msg.nsCar, msg.ewCar, msg.nsPedReq, msg.ewPedReq);
 
-            reply_t reply = { 42, 7 };
+            reply_t reply = { CMD_NONE };
+            if (param->togglePending == 1){
+            	param->togglePending = 0;
+            	reply.cmd = MODE_TOGGLE;
+            }
             MsgReply(rcvid, EOK, &reply, sizeof(reply));
+        }
+    }
+    return NULL;
+}
+
+void *serverConsole(void *arg){
+    ServerParam *param = (ServerParam *)arg;
+    char line[16];
+
+    printf("Press t + Enter to toggle the mode of intersection 1\n");
+    while(fgets(line, sizeof(line), stdin)){
+        if(line[0] == 't'){
+            MsgSendPulse(param->selfCoid, -1, TOGGLE_PULSE, 0);
+        } else {
+            printf("Unknown command '%c' (t = toggle mode)\n", line[0]);
         }
     }
     return NULL;

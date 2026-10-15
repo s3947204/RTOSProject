@@ -6,9 +6,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/dispatch.h>
+#include <sys/netmgr.h>
+
 
 
 #define ATTACH_POINT "MainControllerServer"
+#define TOGGLE_PULSE  (_PULSE_CODE_MINAVAIL + 1)
 
 /* We specify the header as being at least a pulse */
 typedef struct _pulse msg_header_t;
@@ -39,15 +42,18 @@ typedef struct _my_data {
 
 typedef struct {
 	name_attach_t *attach;
+	int selfCoid;
+	int togglePending;
 } ServerParam;
 
+typedef enum { CMD_NONE, MODE_TOGGLE } Cmd;
 typedef struct {
-    int cmd;
-    int arg;
+	Cmd cmd;
 } reply_t;
 
 int serverInit(ServerParam *param);
 void *serverRun(void *arg);
+void *serverConsole(void *arg);
 void serverCleanUp(ServerParam *param);
 
 #endif

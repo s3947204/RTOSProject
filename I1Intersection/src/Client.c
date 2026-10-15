@@ -70,7 +70,13 @@ void *clientRun(void *arg){
 	        	printf("Error sending message to server \n");
 	        }
 
-	        printf("Got reply: cmd=%d arg=%d\n", reply.cmd, reply.arg);
+	        // Need to toggle a mode when a specific command is received
+	        // Send a pulse to the main thread and then the main thread
+	        // can call toggle mode on traffic
+			if(reply.cmd == MODE_TOGGLE){
+				printf("Toggling Modes");
+				MsgSendPulse(param->eventCoid, -1, MODE_TOGGLE_PULSE, 0);
+			}
 		}
 	}
 
