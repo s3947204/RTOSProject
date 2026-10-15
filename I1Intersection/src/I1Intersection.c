@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
 	printf("Timer started. Waiting for pulses...\n");
 
-	trafficInit(&traffic, MODE_SENSOR);
+	trafficInit(&traffic, MODE_CYCLING);
 	while(1){
 		rcvid = MsgReceive(inputAndTimerEventParam.chid, &msg, sizeof(msg), NULL);
 		if(rcvid == -1){
@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
 
 		if(rcvid > 0){
 			traffic_status_t status = {
+				 .id = CONTROLLER_ID,
 				 .mode = traffic.mode,
 				 .phase = traffic.phase,
 				 .elapsed = traffic.elapsed,

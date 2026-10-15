@@ -8,18 +8,25 @@
 #include <sys/dispatch.h>
 #include "Event.h"
 
+#define CONTROLLER_ID 1
 #define ATTACH_POINT "MainControllerServer"
+
+typedef struct {
+    int cmd;
+    int arg;
+} reply_t;
 
 typedef struct _pulse msg_header_t;
 
 typedef struct _my_data {
     msg_header_t hdr;
-    int  mode;         		// MODE_CYCLING = 0, MODE_SENSOR = 1
-    int  phase;        		// index into the phase table
-    int  elapsed;      		// seconds in this phase
-    int  nsPed, ewPed; 		// PedState: 0 RED, 1 GREEN, 2 FLASHING
-    int  nsCar, ewCar; 		// car waiting
-    int  nsPedReq, ewPedReq;
+    int id;					// Aid the server to identify which node sent the status
+    int mode;         		// MODE_CYCLING = 0, MODE_SENSOR = 1
+    int phase;        		// index into the phase table
+    int elapsed;      		// seconds in this phase
+    int nsPed, ewPed; 		// PedState: 0 RED, 1 GREEN, 2 FLASHING
+    int nsCar, ewCar; 		// car waiting
+    int nsPedReq, ewPedReq;
 } traffic_status_t;
 
 

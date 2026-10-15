@@ -65,10 +65,12 @@ void *clientRun(void *arg){
 	                &statusRequest, sizeof(traffic_status_t),
 	                &status, sizeof(traffic_status_t));
 
-
-	        if (MsgSend(param->serverCoid, &status, sizeof(status), NULL, 0) == -1) {
+	        reply_t reply;
+	        if (MsgSend(param->serverCoid, &status, sizeof(status), &reply, sizeof(reply)) == -1) {
 	        	printf("Error sending message to server \n");
 	        }
+
+	        printf("Got reply: cmd=%d arg=%d\n", reply.cmd, reply.arg);
 		}
 	}
 

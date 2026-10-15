@@ -1,5 +1,18 @@
 #include "Server.h"
 
+#define NUM_PHASES 6
+char *pedOutputString[] = { "RED", "GREEN", "FLASHING" };
+char *modeOutputSring[] = { "Cycling", "Sensor" };
+
+phase cycle[NUM_PHASES] = {
+	{ "NSG-EWR", 10, DIR_EW, DIR_NS, TYPE_GREEN}, // hold until EW sensor goes off
+	{ "NSY-EWR", 3, DIR_NONE, DIR_NS, TYPE_YELLOW},
+	{ "NSR-EWR", 1, DIR_NONE, DIR_NS, TYPE_ALLRED},
+	{ "NSR-EWG", 10, DIR_NS, DIR_EW, TYPE_GREEN}, // hold until NS sensor goes off
+	{ "NSR-EWY", 3, DIR_NONE, DIR_EW, TYPE_YELLOW},
+	{ "NSR-EWR", 1, DIR_NONE, DIR_EW, TYPE_ALLRED}
+};
+
 int serverInit(ServerParam *param){
 	printf("MainController: Creating the server\n");
 	param->attach = name_attach(NULL, ATTACH_POINT, NAME_FLAG_ATTACH_GLOBAL);
@@ -21,8 +34,6 @@ void* serverRun(void *arg){
     /* Do your MsgReceive's here now with the chid */
     while (1) {
         rcvid = MsgReceive(param->attach->chid, &msg, sizeof(msg), NULL);
-        printf("server: rcvid=%d type=%d\n", rcvid, msg.hdr.type);
-        fflush(stdout);
 
         if (rcvid == -1) {      /* Error condition, exit */
             break;
@@ -75,11 +86,19 @@ void* serverRun(void *arg){
 
         /* A message (presumably ours) received, handle */
 
-        printf("Mode: %d | Phase: %d | Elapsed: %ds | NS Ped: %d | EW Ped: %d | NS Car: %d | EW Car: %d | NS Ped Req: %d | EW Ped Req: %d\n",
-        		msg.mode,
-				msg.phase, msg.elapsed, msg.nsPed, msg.ewPed,
-				msg.nsCar, msg.ewCar, msg.nsPedReq, msg.ewPedReq);
-        MsgReply(rcvid, EOK, 0, 0);
+        // Id = 1 - intersection 1
+        // Id = 2 - intersection 2
+        // Id = 3 - train intersection
+        // Message is from intersection 1
+        if(msg.id == 1){
+            printf("Mode: %s | Phase: %s | Elapsed: %ds | NS Ped: %s | EW Ped: %s | NS Car Sensor: %d | EW Car Sensor: %d | NS Ped Req: %d | EW Ped Req: %d\n",
+            		modeOutputSring[msg.mode],
+    				cycle[msg.phase].lights, msg.elapsed, pedOutputString[msg.nsPed], pedOutputString[msg.ewPed],
+    				msg.nsCar, msg.ewCar, msg.nsPedReq, msg.ewPedReq);
+
+            reply_t reply = { 42, 7 };
+            MsgReply(rcvid, EOK, &reply, sizeof(reply));
+        }
     }
     return NULL;
 }
